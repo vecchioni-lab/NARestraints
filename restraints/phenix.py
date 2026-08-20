@@ -354,17 +354,17 @@ def write_phil(
     if stacking_block:
         chunks.append(stacking_block)
 
-    chunks.extend(
-        [
-            "      enabled = True",
-            "    }",
-            "  }",
-            "  geometry_restraints.edits {",
-        ]
-    )
+    chunks.extend([
+        "        }",
+        "      enabled = True",
+        "    }",
+        "  }",
+    ])
+
+    chunks.append("  geometry_restraints.edits {")
 
     if pair_blocks:
         chunks.append("\n\n".join(pair_blocks))
 
-    chunks.extend(["  }", "}"])
+    chunks.extend(["  }", "  }", "}"])
     path.write_text("\n".join(chunks) + "\n")
