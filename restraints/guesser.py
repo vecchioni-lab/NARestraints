@@ -385,10 +385,11 @@ def _infer_run_extensions(
     residue_lookup: dict[tuple[str, int], tuple[object, PairResidue]],
 ):
     """
-    Test one-residue extensions at both ends of a convincing run.
+    Iteratively extend an established antiparallel run toward both ends.
 
-    We deliberately allow a weaker geometric score here: the existing run
-    supplies structural evidence that an ugly low-resolution pair may belong.
+    A newly accepted extension becomes the new edge, so a weak pair can be
+    rescued by a strong run and the run can continue outward until a genuine
+    hard stop or model boundary is reached.
     """
     additions = []
     messages = []
@@ -396,39 +397,28 @@ def _infer_run_extensions(
     if not run:
         return additions, messages
 
-    ends = [
-        (-1, +1, -1, "forward"),
-        (0, -1, +1, "backward"),
-    ]
+    # Work on copies so the caller's original run remains unchanged.
+    working_run = list(run)
 
-    for index, da, db, direction in ends:
-        edge = run[index]
-
+    def try_extension(edge: Candidate, da: int, db: int, direction: str):
         try:
             a = int(edge.first.resid) + da
             b = int(edge.second.resid) + db
         except ValueError:
-            continue
+            return None, True
 
-        key = (
-            edge.first.chain,
-            a,
-            edge.second.chain,
-            b,
-        )
+        key1 = (edge.first.chain, a)
+        key2 = (edge.second.chain, b)
 
-        if (
-            (edge.first.chain, a) not in residue_lookup
-            or (edge.second.chain, b) not in residue_lookup
-        ):
+        if key1 not in residue_lookup or key2 not in residue_lookup:
             messages.append(
                 f"RUN EDGE: {edge.first.chain}{a} <-> "
                 f"{edge.second.chain}{b} is outside the model"
             )
-            continue
+            return None, True
 
-        r1, p1 = residue_lookup[(edge.first.chain, a)]
-        r2, p2 = residue_lookup[(edge.second.chain, b)]
+        r1, p1 = residue_lookup[key1]
+        r2, p2 = residue_lookup[key2]
 
         recipe = recipe_for(p1.base_class, p2.base_class)
         if recipe is None:
@@ -436,7 +426,7 @@ def _infer_run_extensions(
                 f"RUN EDGE: {edge.first.chain}{a} <-> "
                 f"{edge.second.chain}{b}: no configured recipe"
             )
-            continue
+            return None, True
 
         candidate = _candidate_score(r1, r2, p1, p2, recipe)
 
@@ -445,36 +435,59 @@ def _infer_run_extensions(
                 f"RUN EDGE: {edge.first.chain}{a} <-> "
                 f"{edge.second.chain}{b}: geometry could not be checked"
             )
-            continue
+            return None, True
 
-        # A run can rescue a weaker individual pair, but not a completely
-        # unreasonable one.
-        if candidate.score >= 30.0:
-            additions.append(
-                Candidate(
-                    candidate.first,
-                    candidate.second,
-                    candidate.recipe,
-                    candidate.score + 20.0,
-                    candidate.bond_distances,
-                    candidate.angle_errors,
-                    candidate.plane_angle,
-                )
+        # Run context permits much worse individual geometry than a seed
+        # candidate, but we still require something physically plausible.
+        if candidate.score >= 10.0:
+            accepted = Candidate(
+                candidate.first,
+                candidate.second,
+                candidate.recipe,
+                candidate.score + 20.0,
+                candidate.bond_distances,
+                candidate.angle_errors,
+                candidate.plane_angle,
             )
             messages.append(
                 f"RUN EDGE: {edge.first.chain}{a} <-> "
                 f"{edge.second.chain}{b} score={candidate.score:.1f} "
                 f"accepted as {direction} extension"
             )
-        else:
-            messages.append(
-                f"RUN EDGE: {edge.first.chain}{a} <-> "
-                f"{edge.second.chain}{b} score={candidate.score:.1f} "
-                f"hard stop"
-            )
+            return accepted, False
+
+        messages.append(
+            f"RUN EDGE: {edge.first.chain}{a} <-> "
+            f"{edge.second.chain}{b} score={candidate.score:.1f} "
+            f"hard stop"
+        )
+        return None, True
+
+    # Repeatedly extend the forward edge.
+    forward = working_run[-1]
+    while True:
+        candidate, stop = try_extension(
+            forward, +1, -1, "forward"
+        )
+        if stop:
+            break
+        additions.append(candidate)
+        working_run.append(candidate)
+        forward = candidate
+
+    # Repeatedly extend the backward edge.
+    backward = working_run[0]
+    while True:
+        candidate, stop = try_extension(
+            backward, -1, +1, "backward"
+        )
+        if stop:
+            break
+        additions.append(candidate)
+        working_run.insert(0, candidate)
+        backward = candidate
 
     return additions, messages
-
 
 def _infer_run_gaps(
     run: list[Candidate],
