@@ -121,6 +121,7 @@ def _angle_block(a1: str, a2: str, a3: str, ideal: float, sigma: float) -> str:
     return "\n".join(
         [
             "    angle {",
+            "      action = add",
             f"      atom_selection_1 = {a1}",
             f"      atom_selection_2 = {a2}",
             f"      atom_selection_3 = {a3}",
@@ -342,8 +343,14 @@ def write_phil(
     pair_blocks: Sequence[str],
     stacking_block: str = "",
 ) -> None:
-    """Write the outer Phenix nucleic-acid restraint structure."""
+    """Write Phenix PHIL with custom geometry edits at the correct scope.
+
+    IMPORTANT:
+      refinement.geometry_restraints.edits is a sibling of
+      refinement.pdb_interpretation, not a child of pdb_interpretation.
+    """
     path = Path(filename)
+
     chunks = [
         "refinement {",
         "  pdb_interpretation {",
@@ -355,16 +362,20 @@ def write_phil(
         chunks.append(stacking_block)
 
     chunks.extend([
-        "        }",
+        "      }",
         "      enabled = True",
         "    }",
         "  }",
+        "",
+        "  geometry_restraints.edits {",
     ])
-
-    chunks.append("  geometry_restraints.edits {")
 
     if pair_blocks:
         chunks.append("\n\n".join(pair_blocks))
 
-    chunks.extend(["  }", "  }", "}"])
+    chunks.extend([
+        "  }",
+        "}",
+    ])
+
     path.write_text("\n".join(chunks) + "\n")

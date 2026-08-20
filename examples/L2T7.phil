@@ -191,12 +191,14 @@ refinement {
           base1 = chain D and resid 10
           base2 = chain D and resid 11
         }
-        }
+      }
       enabled = True
     }
   }
+
   geometry_restraints.edits {
     angle {
+      action = add
       atom_selection_1 = chain B and resid 10 and name C2A
       atom_selection_2 = chain B and resid 10 and name N1A
       atom_selection_3 = chain A and resid 3 and name N3
@@ -205,6 +207,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain B and resid 10 and name C6A
       atom_selection_2 = chain B and resid 10 and name N6A
       atom_selection_3 = chain A and resid 3 and name O4
@@ -243,6 +246,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain A and resid 4 and name C2
       atom_selection_2 = chain A and resid 4 and name N1
       atom_selection_3 = chain B and resid 9 and name N3
@@ -251,6 +255,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain A and resid 4 and name C2
       atom_selection_2 = chain A and resid 4 and name N2
       atom_selection_3 = chain B and resid 9 and name O2
@@ -259,6 +264,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain B and resid 9 and name C4
       atom_selection_2 = chain B and resid 9 and name N4
       atom_selection_3 = chain A and resid 4 and name O6
@@ -267,6 +273,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain B and resid 9 and name C2
       atom_selection_2 = chain B and resid 9 and name O2
       atom_selection_3 = chain A and resid 4 and name N2
@@ -275,6 +282,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain B and resid 9 and name C2
       atom_selection_2 = chain B and resid 9 and name N3
       atom_selection_3 = chain A and resid 4 and name N1
@@ -283,6 +291,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain A and resid 4 and name C6
       atom_selection_2 = chain A and resid 4 and name O6
       atom_selection_3 = chain B and resid 9 and name N4
@@ -329,6 +338,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain A and resid 5 and name C2A
       atom_selection_2 = chain A and resid 5 and name N1A
       atom_selection_3 = chain B and resid 8 and name N3
@@ -337,6 +347,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain A and resid 5 and name C6A
       atom_selection_2 = chain A and resid 5 and name N6A
       atom_selection_3 = chain B and resid 8 and name O4
@@ -375,6 +386,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain B and resid 7 and name C2A
       atom_selection_2 = chain B and resid 7 and name N1A
       atom_selection_3 = chain A and resid 6 and name N3
@@ -383,6 +395,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain B and resid 7 and name C6A
       atom_selection_2 = chain B and resid 7 and name N6A
       atom_selection_3 = chain A and resid 6 and name O4
@@ -421,6 +434,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain A and resid 7 and name C2
       atom_selection_2 = chain A and resid 7 and name N1
       atom_selection_3 = chain B and resid 6 and name N3
@@ -429,6 +443,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain A and resid 7 and name C2
       atom_selection_2 = chain A and resid 7 and name N2
       atom_selection_3 = chain B and resid 6 and name O2
@@ -437,6 +452,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain B and resid 6 and name C4
       atom_selection_2 = chain B and resid 6 and name N4
       atom_selection_3 = chain A and resid 7 and name O6
@@ -445,6 +461,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain B and resid 6 and name C2
       atom_selection_2 = chain B and resid 6 and name O2
       atom_selection_3 = chain A and resid 7 and name N2
@@ -453,6 +470,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain B and resid 6 and name C2
       atom_selection_2 = chain B and resid 6 and name N3
       atom_selection_3 = chain A and resid 7 and name N1
@@ -461,6 +479,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain A and resid 7 and name C6
       atom_selection_2 = chain A and resid 7 and name O6
       atom_selection_3 = chain B and resid 6 and name N4
@@ -507,6 +526,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain B and resid 5 and name C2A
       atom_selection_2 = chain B and resid 5 and name N1A
       atom_selection_3 = chain A and resid 8 and name N3
@@ -515,6 +535,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain B and resid 5 and name C6A
       atom_selection_2 = chain B and resid 5 and name N6A
       atom_selection_3 = chain A and resid 8 and name O4
@@ -553,6 +574,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain A and resid 9 and name C2
       atom_selection_2 = chain A and resid 9 and name N1
       atom_selection_3 = chain D and resid 8 and name N3
@@ -561,6 +583,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain A and resid 9 and name C2
       atom_selection_2 = chain A and resid 9 and name N2
       atom_selection_3 = chain D and resid 8 and name O2
@@ -569,6 +592,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain D and resid 8 and name C4
       atom_selection_2 = chain D and resid 8 and name N4
       atom_selection_3 = chain A and resid 9 and name O6
@@ -577,6 +601,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain D and resid 8 and name C2
       atom_selection_2 = chain D and resid 8 and name O2
       atom_selection_3 = chain A and resid 9 and name N2
@@ -585,6 +610,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain D and resid 8 and name C2
       atom_selection_2 = chain D and resid 8 and name N3
       atom_selection_3 = chain A and resid 9 and name N1
@@ -593,6 +619,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain A and resid 9 and name C6
       atom_selection_2 = chain A and resid 9 and name O6
       atom_selection_3 = chain D and resid 8 and name N4
@@ -639,6 +666,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain A and resid 10 and name C2
       atom_selection_2 = chain A and resid 10 and name N1
       atom_selection_3 = chain D and resid 7 and name N3
@@ -647,6 +675,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain A and resid 10 and name C2
       atom_selection_2 = chain A and resid 10 and name N2
       atom_selection_3 = chain D and resid 7 and name O2
@@ -655,6 +684,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain D and resid 7 and name C4
       atom_selection_2 = chain D and resid 7 and name N4
       atom_selection_3 = chain A and resid 10 and name O6
@@ -663,6 +693,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain D and resid 7 and name C2
       atom_selection_2 = chain D and resid 7 and name O2
       atom_selection_3 = chain A and resid 10 and name N2
@@ -671,6 +702,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain D and resid 7 and name C2
       atom_selection_2 = chain D and resid 7 and name N3
       atom_selection_3 = chain A and resid 10 and name N1
@@ -679,6 +711,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain A and resid 10 and name C6
       atom_selection_2 = chain A and resid 10 and name O6
       atom_selection_3 = chain D and resid 7 and name N4
@@ -725,6 +758,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain D and resid 6 and name C2
       atom_selection_2 = chain D and resid 6 and name N1
       atom_selection_3 = chain A and resid 11 and name N3
@@ -733,6 +767,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain D and resid 6 and name C2
       atom_selection_2 = chain D and resid 6 and name N2
       atom_selection_3 = chain A and resid 11 and name O2
@@ -741,6 +776,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain A and resid 11 and name C4
       atom_selection_2 = chain A and resid 11 and name N4
       atom_selection_3 = chain D and resid 6 and name O6
@@ -749,6 +785,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain A and resid 11 and name C2
       atom_selection_2 = chain A and resid 11 and name O2
       atom_selection_3 = chain D and resid 6 and name N2
@@ -757,6 +794,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain A and resid 11 and name C2
       atom_selection_2 = chain A and resid 11 and name N3
       atom_selection_3 = chain D and resid 6 and name N1
@@ -765,6 +803,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain D and resid 6 and name C6
       atom_selection_2 = chain D and resid 6 and name O6
       atom_selection_3 = chain A and resid 11 and name N4
@@ -811,6 +850,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain D and resid 5 and name C2A
       atom_selection_2 = chain D and resid 5 and name N1A
       atom_selection_3 = chain A and resid 12 and name N3
@@ -819,6 +859,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain D and resid 5 and name C6A
       atom_selection_2 = chain D and resid 5 and name N6A
       atom_selection_3 = chain A and resid 12 and name O4
@@ -857,6 +898,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain A and resid 13 and name C2
       atom_selection_2 = chain A and resid 13 and name N1
       atom_selection_3 = chain D and resid 4 and name N3
@@ -865,6 +907,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain A and resid 13 and name C2
       atom_selection_2 = chain A and resid 13 and name N2
       atom_selection_3 = chain D and resid 4 and name O2
@@ -873,6 +916,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain D and resid 4 and name C4
       atom_selection_2 = chain D and resid 4 and name N4
       atom_selection_3 = chain A and resid 13 and name O6
@@ -881,6 +925,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain D and resid 4 and name C2
       atom_selection_2 = chain D and resid 4 and name O2
       atom_selection_3 = chain A and resid 13 and name N2
@@ -889,6 +934,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain D and resid 4 and name C2
       atom_selection_2 = chain D and resid 4 and name N3
       atom_selection_3 = chain A and resid 13 and name N1
@@ -897,6 +943,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain A and resid 13 and name C6
       atom_selection_2 = chain A and resid 13 and name O6
       atom_selection_3 = chain D and resid 4 and name N4
@@ -943,6 +990,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain D and resid 3 and name C2
       atom_selection_2 = chain D and resid 3 and name N1
       atom_selection_3 = chain A and resid 14 and name N3
@@ -951,6 +999,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain D and resid 3 and name C2
       atom_selection_2 = chain D and resid 3 and name N2
       atom_selection_3 = chain A and resid 14 and name O2
@@ -959,6 +1008,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain A and resid 14 and name C4
       atom_selection_2 = chain A and resid 14 and name N4
       atom_selection_3 = chain D and resid 3 and name O6
@@ -967,6 +1017,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain A and resid 14 and name C2
       atom_selection_2 = chain A and resid 14 and name O2
       atom_selection_3 = chain D and resid 3 and name N2
@@ -975,6 +1026,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain A and resid 14 and name C2
       atom_selection_2 = chain A and resid 14 and name N3
       atom_selection_3 = chain D and resid 3 and name N1
@@ -983,6 +1035,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain D and resid 3 and name C6
       atom_selection_2 = chain D and resid 3 and name O6
       atom_selection_3 = chain A and resid 14 and name N4
@@ -1029,6 +1082,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain C and resid 7 and name C2
       atom_selection_2 = chain C and resid 7 and name N1
       atom_selection_3 = chain B and resid 2 and name N3
@@ -1037,6 +1091,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain C and resid 7 and name C2
       atom_selection_2 = chain C and resid 7 and name N2
       atom_selection_3 = chain B and resid 2 and name O2
@@ -1045,6 +1100,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain B and resid 2 and name C4
       atom_selection_2 = chain B and resid 2 and name N4
       atom_selection_3 = chain C and resid 7 and name O6
@@ -1053,6 +1109,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain B and resid 2 and name C2
       atom_selection_2 = chain B and resid 2 and name O2
       atom_selection_3 = chain C and resid 7 and name N2
@@ -1061,6 +1118,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain B and resid 2 and name C2
       atom_selection_2 = chain B and resid 2 and name N3
       atom_selection_3 = chain C and resid 7 and name N1
@@ -1069,6 +1127,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain C and resid 7 and name C6
       atom_selection_2 = chain C and resid 7 and name O6
       atom_selection_3 = chain B and resid 2 and name N4
@@ -1115,6 +1174,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain B and resid 3 and name C2
       atom_selection_2 = chain B and resid 3 and name N1
       atom_selection_3 = chain C and resid 6 and name N3
@@ -1123,6 +1183,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain B and resid 3 and name C2
       atom_selection_2 = chain B and resid 3 and name N2
       atom_selection_3 = chain C and resid 6 and name O2
@@ -1131,6 +1192,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain C and resid 6 and name C4
       atom_selection_2 = chain C and resid 6 and name N4
       atom_selection_3 = chain B and resid 3 and name O6
@@ -1139,6 +1201,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain C and resid 6 and name C2
       atom_selection_2 = chain C and resid 6 and name O2
       atom_selection_3 = chain B and resid 3 and name N2
@@ -1147,6 +1210,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain C and resid 6 and name C2
       atom_selection_2 = chain C and resid 6 and name N3
       atom_selection_3 = chain B and resid 3 and name N1
@@ -1155,6 +1219,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain B and resid 3 and name C6
       atom_selection_2 = chain B and resid 3 and name O6
       atom_selection_3 = chain C and resid 6 and name N4
@@ -1201,6 +1266,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain B and resid 4 and name C2
       atom_selection_2 = chain B and resid 4 and name N1
       atom_selection_3 = chain C and resid 5 and name N3
@@ -1209,6 +1275,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain B and resid 4 and name C2
       atom_selection_2 = chain B and resid 4 and name N2
       atom_selection_3 = chain C and resid 5 and name O2
@@ -1217,6 +1284,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain C and resid 5 and name C4
       atom_selection_2 = chain C and resid 5 and name N4
       atom_selection_3 = chain B and resid 4 and name O6
@@ -1225,6 +1293,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain C and resid 5 and name C2
       atom_selection_2 = chain C and resid 5 and name O2
       atom_selection_3 = chain B and resid 4 and name N2
@@ -1233,6 +1302,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain C and resid 5 and name C2
       atom_selection_2 = chain C and resid 5 and name N3
       atom_selection_3 = chain B and resid 4 and name N1
@@ -1241,6 +1311,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain B and resid 4 and name C6
       atom_selection_2 = chain B and resid 4 and name O6
       atom_selection_3 = chain C and resid 5 and name N4
@@ -1287,6 +1358,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain C and resid 2 and name C2A
       atom_selection_2 = chain C and resid 2 and name N1A
       atom_selection_3 = chain D and resid 11 and name N3
@@ -1295,6 +1367,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain C and resid 2 and name C6A
       atom_selection_2 = chain C and resid 2 and name N6A
       atom_selection_3 = chain D and resid 11 and name O4
@@ -1333,6 +1406,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain D and resid 10 and name C2
       atom_selection_2 = chain D and resid 10 and name N1
       atom_selection_3 = chain C and resid 3 and name N3
@@ -1341,6 +1415,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain D and resid 10 and name C2
       atom_selection_2 = chain D and resid 10 and name N2
       atom_selection_3 = chain C and resid 3 and name O2
@@ -1349,6 +1424,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain C and resid 3 and name C4
       atom_selection_2 = chain C and resid 3 and name N4
       atom_selection_3 = chain D and resid 10 and name O6
@@ -1357,6 +1433,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain C and resid 3 and name C2
       atom_selection_2 = chain C and resid 3 and name O2
       atom_selection_3 = chain D and resid 10 and name N2
@@ -1365,6 +1442,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain C and resid 3 and name C2
       atom_selection_2 = chain C and resid 3 and name N3
       atom_selection_3 = chain D and resid 10 and name N1
@@ -1373,6 +1451,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain D and resid 10 and name C6
       atom_selection_2 = chain D and resid 10 and name O6
       atom_selection_3 = chain C and resid 3 and name N4
@@ -1419,6 +1498,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain C and resid 4 and name C2A
       atom_selection_2 = chain C and resid 4 and name N1A
       atom_selection_3 = chain D and resid 9 and name N3
@@ -1427,6 +1507,7 @@ refinement {
     }
 
     angle {
+      action = add
       atom_selection_1 = chain C and resid 4 and name C6A
       atom_selection_2 = chain C and resid 4 and name N6A
       atom_selection_3 = chain D and resid 9 and name O4
@@ -1463,6 +1544,5 @@ refinement {
       atom_selection = (chain D and resid 9 and (name C2 or name O2 or name N1 or name N3 or name C4 or name O4 or name C5 or name C5M or name C6)) or (chain C and resid 4 and (name C2A or name N1A or name C6A or name N6A or name C5A or name C4A or name N3A or name N9A or name C8A or name N7A))
       sigma = 0.176
     }
-  }
   }
 }
