@@ -54,6 +54,11 @@ refinement {
 
         stacking_pair {
           base1 = chain A and resid 11
+          base2 = chain A and resid 12
+        }
+
+        stacking_pair {
+          base1 = chain A and resid 12
           base2 = chain A and resid 13
         }
 
@@ -191,11 +196,65 @@ refinement {
   }
   geometry_restraints.edits {
     angle {
+      atom_selection_1 = chain B and resid 5 and name C2
+      atom_selection_2 = chain B and resid 5 and name N1
+      atom_selection_3 = chain A and resid 11 and name N3
+      angle_ideal = 116.2
+      sigma = 3.46
+    }
+
+    angle {
+      atom_selection_1 = chain B and resid 5 and name C6
+      atom_selection_2 = chain B and resid 5 and name N6
+      atom_selection_3 = chain A and resid 11 and name O4
+      angle_ideal = 115.6
+      sigma = 8.34
+    }
+
+    bond {
+      action=add
+      atom_selection_1 = chain A and resid 11 and name N3
+      atom_selection_2 = chain B and resid 5 and name N1
+      distance_ideal = 2.8
+      sigma = 0.2
+    }
+
+    bond {
+      action=add
+      atom_selection_1 = chain A and resid 11 and name O4
+      atom_selection_2 = chain B and resid 5 and name N6
+      distance_ideal = 2.8
+      sigma = 0.2
+    }
+
+    parallelity {
+      action = add
+      atom_selection_1 = chain A and resid 11 and (name C2 or name O2 or name N1 or name N3 or name C4 or name O4 or name C5 or name C7 or name C6)
+      atom_selection_2 = chain B and resid 5 and (name C2 or name N1 or name C6 or name N6 or name C5 or name C4 or name N3 or name N9 or name C8 or name N7)
+      sigma = 0.027
+      target_angle_deg = 0
+    }
+
+    planarity {
+      action = add
+      atom_selection = (chain A and resid 11 and (name C2 or name O2 or name N1 or name N3 or name C4 or name O4 or name C5 or name C7 or name C6)) or (chain B and resid 5 and (name C2 or name N1 or name C6 or name N6 or name C5 or name C4 or name N3 or name N9 or name C8 or name N7))
+      sigma = 0.176
+    }
+
+    angle {
       atom_selection_1 = chain A and resid 12 and name C2
       atom_selection_2 = chain A and resid 12 and name N1
       atom_selection_3 = chain B and resid 4 and name N3
       angle_ideal = 116.2
       sigma = 3.46
+    }
+
+    angle {
+      atom_selection_1 = chain A and resid 12 and name C6
+      atom_selection_2 = chain A and resid 12 and name N6
+      atom_selection_3 = chain B and resid 4 and name O4
+      angle_ideal = 115.6
+      sigma = 8.34
     }
 
     angle {
@@ -207,43 +266,11 @@ refinement {
     }
 
     angle {
-      atom_selection_1 = chain B and resid 4 and name C4
-      atom_selection_2 = chain B and resid 4 and name O4
-      atom_selection_3 = chain A and resid 12 and name N6
-      angle_ideal = 117.3
-      sigma = 2.86
-    }
-
-    angle {
       atom_selection_1 = chain B and resid 4 and name C2
       atom_selection_2 = chain B and resid 4 and name O2
       atom_selection_3 = chain A and resid 12 and name N2
       angle_ideal = 120.7
       sigma = 2.2
-    }
-
-    angle {
-      atom_selection_1 = chain B and resid 4 and name C2
-      atom_selection_2 = chain B and resid 4 and name N3
-      atom_selection_3 = chain A and resid 12 and name N1
-      angle_ideal = 115.8
-      sigma = 2.88
-    }
-
-    angle {
-      atom_selection_1 = chain A and resid 12 and name C6
-      atom_selection_2 = chain A and resid 12 and name N6
-      atom_selection_3 = chain B and resid 4 and name O4
-      angle_ideal = 122.8
-      sigma = 3
-    }
-
-    bond {
-      action=add
-      atom_selection_1 = chain A and resid 12 and name N2
-      atom_selection_2 = chain B and resid 4 and name O2
-      distance_ideal = 2.8
-      sigma = 0.2
     }
 
     bond {
@@ -262,17 +289,71 @@ refinement {
       sigma = 0.2
     }
 
+    bond {
+      action=add
+      atom_selection_1 = chain A and resid 12 and name N2
+      atom_selection_2 = chain B and resid 4 and name O2
+      distance_ideal = 2.8
+      sigma = 0.2
+    }
+
     parallelity {
       action = add
-      atom_selection_1 = chain A and resid 12 and (name C2 or name N2 or name C6 or name N6 or name N1 or name C5 or name C4 or name N3 or name N9 or name C8 or name N7)
-      atom_selection_2 = chain B and resid 4 and (name C2 or name O2 or name N1 or name N3 or name C4 or name O4 or name C5 or name C6)
+      atom_selection_1 = chain B and resid 4 and (name C2 or name O2 or name N1 or name N3 or name C4 or name O4 or name C5 or name C7 or name C6)
+      atom_selection_2 = chain A and resid 12 and (name C2 or name N2 or name C6 or name N1 or name C5 or name C4 or name N3 or name N9 or name C8 or name N7)
       sigma = 0.027
       target_angle_deg = 0
     }
 
     planarity {
       action = add
-      atom_selection = (chain A and resid 12 and (name C2 or name N2 or name C6 or name N6 or name N1 or name C5 or name C4 or name N3 or name N9 or name C8 or name N7)) or (chain B and resid 4 and (name C2 or name O2 or name N1 or name N3 or name C4 or name O4 or name C5 or name C6))
+      atom_selection = (chain B and resid 4 and (name C2 or name O2 or name N1 or name N3 or name C4 or name O4 or name C5 or name C7 or name C6)) or (chain A and resid 12 and (name C2 or name N2 or name C6 or name N1 or name C5 or name C4 or name N3 or name N9 or name C8 or name N7))
+      sigma = 0.176
+    }
+
+    angle {
+      atom_selection_1 = chain B and resid 3 and name C2
+      atom_selection_2 = chain B and resid 3 and name N1
+      atom_selection_3 = chain A and resid 13 and name N3
+      angle_ideal = 116.2
+      sigma = 3.46
+    }
+
+    angle {
+      atom_selection_1 = chain B and resid 3 and name C6
+      atom_selection_2 = chain B and resid 3 and name N6
+      atom_selection_3 = chain A and resid 13 and name O4
+      angle_ideal = 115.6
+      sigma = 8.34
+    }
+
+    bond {
+      action=add
+      atom_selection_1 = chain A and resid 13 and name N3
+      atom_selection_2 = chain B and resid 3 and name N1
+      distance_ideal = 2.8
+      sigma = 0.2
+    }
+
+    bond {
+      action=add
+      atom_selection_1 = chain A and resid 13 and name O4
+      atom_selection_2 = chain B and resid 3 and name N6
+      distance_ideal = 2.8
+      sigma = 0.2
+    }
+
+    parallelity {
+      action = add
+      atom_selection_1 = chain A and resid 13 and (name C2 or name O2 or name N1 or name N3 or name C4 or name O4 or name C5 or name C7 or name C6)
+      atom_selection_2 = chain B and resid 3 and (name C2 or name N1 or name C6 or name N6 or name C5 or name C4 or name N3 or name N9 or name C8 or name N7)
+      sigma = 0.027
+      target_angle_deg = 0
+    }
+
+    planarity {
+      action = add
+      atom_selection = (chain A and resid 13 and (name C2 or name O2 or name N1 or name N3 or name C4 or name O4 or name C5 or name C7 or name C6)) or (chain B and resid 3 and (name C2 or name N1 or name C6 or name N6 or name C5 or name C4 or name N3 or name N9 or name C8 or name N7))
       sigma = 0.176
     }
   }

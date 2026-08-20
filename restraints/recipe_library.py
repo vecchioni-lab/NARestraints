@@ -25,7 +25,7 @@ class PairRecipe:
 PAIR_RECIPES: dict[frozenset[str], PairRecipe] = {
     frozenset(("A", "T")): PairRecipe("AT", frozenset(("A",)), frozenset(("T",))),
     frozenset(("G", "C")): PairRecipe("GC", frozenset(("G",)), frozenset(("C",))),
-    frozenset(("D", "T")): PairRecipe("GC", frozenset(("D",)), frozenset(("T",))),
+    frozenset(("D", "T")): PairRecipe("D_T", frozenset(("D",)), frozenset(("T",))),
     frozenset(("B", "S")): PairRecipe("GC", frozenset(("B",)), frozenset(("S",))),
     frozenset(("Z", "P")): PairRecipe("GC", frozenset(("Z",)), frozenset(("P",))),
     frozenset(("K", "X")): PairRecipe("GC", frozenset(("K",)), frozenset(("X",))),

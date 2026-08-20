@@ -34,6 +34,19 @@ GC_BONDS = (
     ("G.O6", "C.N4", 2.8, 0.2),
 )
 
+DT_ANGLE_RESTRAINTS = (
+    ("D.C2", "D.N1", "T.N3", 116.2, 3.46),
+    ("D.C6", "D.N6", "T.O4", 115.6, 8.34),
+    ("D.C2", "D.N2", "T.O2", 122.2, 2.88),
+    ("T.C2", "T.O2", "D.N2", 120.7, 2.20),
+)
+
+DT_BONDS = (
+    ("D.N1", "T.N3", 2.8, 0.2),
+    ("D.N6", "T.O4", 2.8, 0.2),
+    ("D.N2", "T.O2", 2.8, 0.2),
+)
+
 AT_PARALLEL_T = ("C2", "O2", "N1", "N3", "C4", "O4", "C5", "C7", "C6")
 AT_PARALLEL_A = ("C2", "N1", "C6", "N6", "C5", "C4", "N3", "N9", "C8", "N7")
 
@@ -55,7 +68,6 @@ class PairResidue:
 # rather than changing the underlying Ligands.xlsx mapping.
 RECIPE_ROLE_ALIASES = {
     "GC": {
-        "D": {"O6": "N6"},
         "T": {"N4": "O4"},
     },
 }
@@ -228,6 +240,41 @@ def generate_pair_restraints(
                     _selection_for_atoms(left, AT_PARALLEL_A, recipe.name),
                 )
             )
+    elif recipe.name == "D_T":
+        refs = {"D": left, "T": right}
+        for a1, a2, a3, ideal, sigma in DT_ANGLE_RESTRAINTS:
+            lines.append(
+                _angle_block(
+                    atom_selection(refs[a1[0]], a1[2:], recipe.name),
+                    atom_selection(refs[a2[0]], a2[2:], recipe.name),
+                    atom_selection(refs[a3[0]], a3[2:], recipe.name),
+                    ideal,
+                    sigma,
+                )
+            )
+        for a1, a2, ideal, sigma in DT_BONDS:
+            lines.append(
+                _bond_block(
+                    atom_selection(refs[a1[0]], a1[2:], recipe.name),
+                    atom_selection(refs[a2[0]], a2[2:], recipe.name),
+                    ideal,
+                    sigma,
+                )
+            )
+        if parallels:
+            lines.append(
+                _parallelity_block(
+                    _selection_for_atoms(right, AT_PARALLEL_T, recipe.name),
+                    _selection_for_atoms(left, GC_PARALLEL_G, recipe.name),
+                )
+            )
+        if planes:
+            lines.append(
+                _planarity_block(
+                    _selection_for_atoms(right, AT_PARALLEL_T, recipe.name),
+                    _selection_for_atoms(left, GC_PARALLEL_G, recipe.name),
+                )
+            )
     else:
         refs = {"G": left, "C": right}
         for a1, a2, a3, ideal, sigma in GC_ANGLE_RESTRAINTS:
@@ -266,24 +313,29 @@ def generate_pair_restraints(
 
     return "\n\n".join(lines)
 
-def generate_stacking_restraints(residue_sequence: Sequence[PairResidue]) -> str:
-    """Replicate the MATLAB stacking-pair generation for adjacent residues."""
+def generate_stacking_restraints(
+    residue_sequence: Sequence[tuple[str, str]],) -> str:
+    """Generate stacking restraints for consecutive residues in a chain."""
     blocks: list[str] = []
-    for a, b in zip(residue_sequence, residue_sequence[1:]):
-        if a.chain != b.chain:
+
+    for (chain1, resid1), (chain2, resid2) in zip(
+        residue_sequence, residue_sequence[1:]
+    ):
+        if chain1 != chain2:
             continue
+
         blocks.append(
             "\n".join(
                 [
                     "        stacking_pair {",
-                    f"          base1 = chain {a.chain} and resid {a.resid}",
-                    f"          base2 = chain {b.chain} and resid {b.resid}",
+                    f"          base1 = chain {chain1} and resid {resid1}",
+                    f"          base2 = chain {chain2} and resid {resid2}",
                     "        }",
                 ]
             )
         )
-    return "\n\n".join(blocks)
 
+    return "\n\n".join(blocks)
 
 def write_phil(
     filename: str | Path,

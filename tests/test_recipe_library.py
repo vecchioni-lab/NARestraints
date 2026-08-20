@@ -5,7 +5,7 @@ def test_configured_recipes():
     assert recipe_for("A", "T").name == "AT"
     assert recipe_for("T", "A").name == "AT"
     assert recipe_for("G", "C").name == "GC"
-    assert recipe_for("D", "T").name == "GC"
+    assert recipe_for("D", "T").name == "D_T"
     assert recipe_for("B", "S").name == "GC"
     assert recipe_for("Z", "P").name == "GC"
     assert recipe_for("K", "X").name == "GC"

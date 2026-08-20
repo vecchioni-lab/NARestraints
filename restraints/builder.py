@@ -25,7 +25,7 @@ def _record_score(record: dict, residue) -> int:
             "Function", "Source sheet", "Glycosidic atom",
         }:
             continue
-        if value is not None and value != "" and residue.has_id(str(value)):
+        if value is not None and value != "" and residue.has_id(str(value).strip()):
             score += 1
     return score
 
@@ -42,7 +42,6 @@ def record_for_residue(records: list[dict], residue) -> dict:
 
 def pair_residue_from_pdb(records: list[dict], residue) -> PairResidue:
     record = record_for_residue(records, residue)
-    print("RECORD:", record)
     base_class = record.get("Base Analog")
 
     if base_class not in _PAIR_CATEGORIES:
@@ -59,8 +58,8 @@ def pair_residue_from_pdb(records: list[dict], residue) -> PairResidue:
             "Function", "Source sheet", "Glycosidic atom",
         }:
             continue
-        if value is not None and value != "" and residue.has_id(str(value)):
-            atoms[key] = str(value)
+        if value is not None and value != "" and residue.has_id(str(value).strip()):
+            atoms[key] = str(value).strip()
 
     return PairResidue(
         chain=residue.get_parent().get_id(),
@@ -121,27 +120,24 @@ def build_phil_from_pdb(
                 continue
             pair_blocks.append(block)
 
-    stacking_block = ""
+        stacking_block = ""
     if include_stacking:
         # Match the MATLAB behavior: stacking is generated for consecutive
         # residues in each PDB chain, independently of selected base pairs.
         for model in structure:
             for chain in model:
-                residues = [
-                    r for r in chain.get_residues()
-                    if r.id[0] == " "
+                residues = list(chain.get_residues())
+
+                stacking_residues = [
+                    (chain.id, str(residue.id[1]))
+                    for residue in residues
                 ]
-                converted = []
-                for residue in residues:
-                    try:
-                        converted.append(pair_residue_from_pdb(records, residue))
-                    except ValueError:
-                        # A residue without a supported A/T/G/C mapping is not
-                        # included in stacking output for this first version.
-                        continue
-                if len(converted) >= 2:
-                    block = generate_stacking_restraints(converted)
+
+                if len(stacking_residues) >= 2:
+                    block = generate_stacking_restraints(stacking_residues)
                     if block:
-                        stacking_block += ("\n\n" if stacking_block else "") + block
+                        stacking_block += (
+                            "\n\n" if stacking_block else ""
+                        ) + block
 
     write_phil(output_filename, pair_blocks, stacking_block)

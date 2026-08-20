@@ -13,6 +13,9 @@ def standard_atoms(base):
         }
         if base == "A":
             atoms["N6"] = "N6"
+        elif base == "D":
+            atoms["N2"] = "N2"
+            atoms["N6"] = "N6"
         else:
             atoms["N2"] = "N2"
             atoms["O6"] = "O6"
@@ -48,12 +51,16 @@ def test_gc_recipe_contains_matlab_geometry():
     assert "planarity {" in text
 
 
-def test_special_category_pairs_use_configured_recipe():
+def test_d_t_uses_special_hybrid_recipe():
     d = residue("A", 1, "D", standard_atoms("D"))
     t = residue("B", 2, "T", standard_atoms("T"))
     text = generate_pair_restraints(d, t)
     assert text is not None
     assert text.count("distance_ideal = 2.8") == 3
+    assert text.count("angle_ideal =") == 4
+    assert "angle_ideal = 120.7" in text
+    assert "angle_ideal = 115.6" in text
+    assert "angle_ideal = 120.7" in text
 
 
 def test_unsupported_pair_returns_none():
@@ -62,10 +69,10 @@ def test_unsupported_pair_returns_none():
     assert generate_pair_restraints(g, t) is None
 
 
-def test_d_t_gc_recipe_maps_c_role_n4_to_t_o4():
+def test_d_t_recipe_maps_t_roles_to_actual_atoms():
     d = PairResidue("A", "3", {
         "C2": "C2", "N1": "N1", "N2": "N2", "C4": "C4",
-        "C5": "C5", "C6": "C6", "O6": "O6", "N3": "N3",
+        "C5": "C5", "C6": "C6", "N6": "N6", "N3": "N3",
         "N9": "N9", "C8": "C8", "N7": "N7",
     }, "D")
     t = PairResidue("B", "4", {
