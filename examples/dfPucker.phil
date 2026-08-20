@@ -229,7 +229,7 @@ refinement {
 
     parallelity {
       action = add
-      atom_selection_1 = chain A and resid 9 and (name C2 or name N1 or name N3 or name C4 or name O4 or name C5 or name C7 or name C6)
+      atom_selection_1 = chain A and resid 9 and (name C2 or name S2 or name N1 or name N3 or name C4 or name O4 or name C5 or name C7 or name C6)
       atom_selection_2 = chain B and resid 5 and (name C2 or name N1 or name C6 or name N6 or name C5 or name C4 or name N3 or name N9 or name C8 or name N7)
       sigma = 0.027
       target_angle_deg = 0
@@ -237,7 +237,7 @@ refinement {
 
     planarity {
       action = add
-      atom_selection = (chain A and resid 9 and (name C2 or name N1 or name N3 or name C4 or name O4 or name C5 or name C7 or name C6)) or (chain B and resid 5 and (name C2 or name N1 or name C6 or name N6 or name C5 or name C4 or name N3 or name N9 or name C8 or name N7))
+      atom_selection = (chain A and resid 9 and (name C2 or name S2 or name N1 or name N3 or name C4 or name O4 or name C5 or name C7 or name C6)) or (chain B and resid 5 and (name C2 or name N1 or name C6 or name N6 or name C5 or name C4 or name N3 or name N9 or name C8 or name N7))
       sigma = 0.176
     }
 
@@ -275,7 +275,7 @@ refinement {
 
     parallelity {
       action = add
-      atom_selection_1 = chain D and resid 7 and (name C2 or name N1 or name N3 or name C4 or name O4 or name C5 or name C7 or name C6)
+      atom_selection_1 = chain D and resid 7 and (name C2 or name S2 or name N1 or name N3 or name C4 or name O4 or name C5 or name C7 or name C6)
       atom_selection_2 = chain C and resid 3 and (name C2 or name N1 or name C6 or name N6 or name C5 or name C4 or name N3 or name N9 or name C8 or name N7)
       sigma = 0.027
       target_angle_deg = 0
@@ -283,7 +283,7 @@ refinement {
 
     planarity {
       action = add
-      atom_selection = (chain D and resid 7 and (name C2 or name N1 or name N3 or name C4 or name O4 or name C5 or name C7 or name C6)) or (chain C and resid 3 and (name C2 or name N1 or name C6 or name N6 or name C5 or name C4 or name N3 or name N9 or name C8 or name N7))
+      atom_selection = (chain D and resid 7 and (name C2 or name S2 or name N1 or name N3 or name C4 or name O4 or name C5 or name C7 or name C6)) or (chain C and resid 3 and (name C2 or name N1 or name C6 or name N6 or name C5 or name C4 or name N3 or name N9 or name C8 or name N7))
       sigma = 0.176
     }
 

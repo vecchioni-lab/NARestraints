@@ -5,6 +5,7 @@ import argparse
 
 from .base_pairs import read_base_pair_file
 from .builder import build_phil_from_pdb
+from .validator import validate_and_fix_pdb
 
 
 def main() -> None:
@@ -27,10 +28,11 @@ def main() -> None:
     if output is None:
         output = args.pdb.rsplit(".", 1)[0] + ".phil"
 
+    pdb = validate_and_fix_pdb(args.pdb)
     stretches = read_base_pair_file(args.pairs)
 
     build_phil_from_pdb(
-        args.pdb,
+        pdb,
         stretches,
         output,
         parallels=not args.no_parallels,
