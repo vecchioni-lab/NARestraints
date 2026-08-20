@@ -1,0 +1,10 @@
+# One base-pair stretch.
+# Each block is: chain/range for base 1, then chain/range for base 2.
+# Ranges may run in either direction.
+
+A 103:108
+C 214:209
+
+# A second independent stretch:
+A 109:115
+B 125:119

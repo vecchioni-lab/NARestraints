@@ -1,8 +1,8 @@
-"""Basic DNA geometry tools for MetalBase."""
+"""Basic DNA geometry tools for restraints."""
 
 import numpy as np
-from metalbase.residue_library import find_residue
-from metalbase.residue_library import heterocycle_atom_names
+from restraints.residue_library import find_residue
+from restraints.residue_library import heterocycle_atom_names
 
 def distance(point_a, point_b):
     """Return the distance in Å between two 3D coordinates."""
@@ -19,7 +19,7 @@ def midpoint(point_a, point_b):
     return (point_a + point_b) / 2
 
 def recognized_residues(structure, residue_records):
-    """Return residues whose PDB residue code exists in the MetalBase library."""
+    """Return residues whose PDB residue code exists in the restraints library."""
     recognized = []
 
     for residue in structure.get_residues():
