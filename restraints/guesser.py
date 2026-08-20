@@ -133,6 +133,8 @@ def _candidate_score(
     p1: PairResidue,
     p2: PairResidue,
     recipe,
+    *,
+    allow_bad_geometry: bool = False,
 ) -> Candidate | None:
     roles = _role_residues(p1, p2, recipe)
     if roles is None:
@@ -208,8 +210,9 @@ def _candidate_score(
         np.linalg.norm(left_plane[0] - right_plane[0])
     )
 
-    if center_distance > SEARCH_RADIUS or plane_angle > MAX_PLANE_ANGLE:
-        return None
+    if not allow_bad_geometry:
+        if center_distance > SEARCH_RADIUS or plane_angle > MAX_PLANE_ANGLE:
+            return None
 
     bond_score = sum(
         math.exp(-0.5 * ((d - ideal) / BOND_SOFT_SIGMA) ** 2)
@@ -428,7 +431,14 @@ def _infer_run_extensions(
             )
             return None, True
 
-        candidate = _candidate_score(r1, r2, p1, p2, recipe)
+        candidate = _candidate_score(
+            r1,
+            r2,
+            p1,
+            p2,
+            recipe,
+            allow_bad_geometry=True,
+        )
 
         if candidate is None:
             messages.append(
