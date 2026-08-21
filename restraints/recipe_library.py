@@ -17,6 +17,7 @@ class PairRecipe:
     name: str
     role1_categories: frozenset[str]
     role2_categories: frozenset[str]
+    noncanonical: bool = False
 
 
 # The order of role categories matters for recipes: AT expects an A-like
@@ -30,6 +31,14 @@ PAIR_RECIPES: dict[frozenset[str], PairRecipe] = {
     frozenset(("Z", "P")): PairRecipe("GC", frozenset(("Z",)), frozenset(("P",))),
     frozenset(("K", "X")): PairRecipe("GC", frozenset(("K",)), frozenset(("X",))),
     frozenset(("I", "C")): PairRecipe("AT", frozenset(("I",)), frozenset(("C",))),
+    # Explicitly supported non-canonical geometries. The guesser must
+    # opt in before these recipes are considered.
+    frozenset(("A", "G")): PairRecipe(
+        "AG_IX", frozenset(("A",)), frozenset(("G",)), noncanonical=True
+    ),
+    frozenset(("G", "T")): PairRecipe(
+        "GU_XXVIII", frozenset(("G",)), frozenset(("T",)), noncanonical=True
+    ),
 }
 
 

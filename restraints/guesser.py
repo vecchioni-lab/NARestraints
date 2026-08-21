@@ -46,6 +46,7 @@ class Candidate:
     bond_distances: tuple[float, ...]
     angle_errors: tuple[float, ...]
     plane_angle: float
+    noncanonical: bool = False
 
 
 def _template(recipe_name: str):
@@ -53,6 +54,12 @@ def _template(recipe_name: str):
         return AT_ANGLE_RESTRAINTS, AT_BONDS, AT_PARALLEL_A, AT_PARALLEL_T
     if recipe_name == "D_T":
         return DT_ANGLE_RESTRAINTS, DT_BONDS, GC_PARALLEL_G, GC_PARALLEL_C
+    if recipe_name == "AG_IX":
+        from .phenix import AG_IX_ANGLES, AG_IX_BONDS
+        return AG_IX_ANGLES, AG_IX_BONDS, GC_PARALLEL_G, GC_PARALLEL_G
+    if recipe_name == "GU_XXVIII":
+        from .phenix import GU_XXVIII_ANGLES, GU_XXVIII_BONDS
+        return GU_XXVIII_ANGLES, GU_XXVIII_BONDS, GC_PARALLEL_G, AT_PARALLEL_T
     return GC_ANGLE_RESTRAINTS, GC_BONDS, GC_PARALLEL_G, GC_PARALLEL_C
 
 
@@ -78,6 +85,12 @@ def _side_for_token(token: str, recipe_name: str) -> str:
 
     if recipe_name == "D_T":
         return "left" if role == "D" else "right"
+
+    if recipe_name == "AG_IX":
+        return "left" if role == "A" else "right"
+
+    if recipe_name == "GU_XXVIII":
+        return "left" if role == "G" else "right"
 
     # GC-like recipes use G-like geometry for recipe role 1 and
     # C-like geometry for recipe role 2, even for B:S, Z:P, K:X, etc.
@@ -219,10 +232,12 @@ def _candidate_score(
         for d, (_, _, ideal, _) in zip(bond_distances, bonds)
     ) / len(bonds)
 
-    angle_score = sum(
-        math.exp(-0.5 * (error / 12.0) ** 2)
-        for error in angle_errors
-    ) / len(angle_errors)
+    angle_score = (
+        sum(math.exp(-0.5 * (error / 12.0) ** 2) for error in angle_errors)
+        / len(angle_errors)
+        if angle_errors
+        else 1.0
+    )
 
     plane_score = math.exp(
         -0.5 * (plane_angle / 12.0) ** 2
@@ -239,6 +254,10 @@ def _candidate_score(
         + 0.10 * center_score
     )
 
+    # Non-canonical candidates are deliberately de-emphasized.
+    if recipe.noncanonical:
+        score -= 10.0
+
     return Candidate(
         first=p1,
         second=p2,
@@ -247,10 +266,11 @@ def _candidate_score(
         bond_distances=tuple(bond_distances),
         angle_errors=tuple(angle_errors),
         plane_angle=plane_angle,
+        noncanonical=recipe.noncanonical,
     )
 
 
-def _compatible_candidates(residues):
+def _compatible_candidates(residues, *, allow_noncanonical: bool = False):
     for i, (r1, p1) in enumerate(residues):
         for r2, p2 in residues[i + 1:]:
             # Adjacent residues on the same chain are stacking neighbors,
@@ -263,6 +283,8 @@ def _compatible_candidates(residues):
 
             recipe = recipe_for(p1.base_class, p2.base_class)
             if recipe is None:
+                continue
+            if recipe.noncanonical and not allow_noncanonical:
                 continue
 
             candidate = _candidate_score(
@@ -386,6 +408,8 @@ def _run_score(run: list[Candidate]) -> float:
 def _infer_run_extensions(
     run: list[Candidate],
     residue_lookup: dict[tuple[str, int], tuple[object, PairResidue]],
+    *,
+    allow_noncanonical: bool = False,
 ):
     """
     Iteratively extend an established antiparallel run toward both ends.
@@ -424,7 +448,7 @@ def _infer_run_extensions(
         r2, p2 = residue_lookup[key2]
 
         recipe = recipe_for(p1.base_class, p2.base_class)
-        if recipe is None:
+        if recipe is None or (recipe.noncanonical and not allow_noncanonical):
             messages.append(
                 f"RUN EDGE: {edge.first.chain}{a} <-> "
                 f"{edge.second.chain}{b}: no configured recipe"
@@ -458,6 +482,7 @@ def _infer_run_extensions(
                 candidate.bond_distances,
                 candidate.angle_errors,
                 candidate.plane_angle,
+                candidate.noncanonical,
             )
             messages.append(
                 f"RUN EDGE: {edge.first.chain}{a} <-> "
@@ -502,6 +527,8 @@ def _infer_run_extensions(
 def _infer_run_gaps(
     run: list[Candidate],
     residue_lookup: dict[tuple[str, int], tuple[object, PairResidue]],
+    *,
+    allow_noncanonical: bool = False,
 ):
     """Check one-residue holes inside an otherwise continuous run."""
     additions = []
@@ -535,7 +562,7 @@ def _infer_run_gaps(
         r2, p2 = residue_lookup[key2]
 
         recipe = recipe_for(p1.base_class, p2.base_class)
-        if recipe is None:
+        if recipe is None or (recipe.noncanonical and not allow_noncanonical):
             messages.append(
                 f"RUN GAP: {left.first.chain}{a} <-> "
                 f"{left.second.chain}{b}: no configured recipe"
@@ -581,11 +608,16 @@ def _infer_run_gaps(
 def _select_runs(
     candidates: list[Candidate],
     residue_lookup: dict[tuple[str, int], tuple[object, PairResidue]],
+    *,
+    allow_noncanonical: bool = False,
 ):
     """Select strong antiparallel runs, then fill gaps and extend edges."""
     # Only reasonably plausible candidates seed runs. We keep the threshold
     # lower than the final isolated-pair threshold because continuity matters.
-    seeds = [c for c in candidates if c.score >= 45.0]
+    seeds = [
+        c for c in candidates
+        if c.score >= (55.0 if c.noncanonical else 45.0)
+    ]
     runs = _build_runs(seeds)
 
     runs.sort(key=lambda r: (_run_score(r), len(r)), reverse=True)
@@ -596,10 +628,10 @@ def _select_runs(
 
     for run in runs:
         run_additions, run_messages = _infer_run_gaps(
-            run, residue_lookup
+            run, residue_lookup, allow_noncanonical=allow_noncanonical
         )
         edge_additions, edge_messages = _infer_run_extensions(
-            run, residue_lookup
+            run, residue_lookup, allow_noncanonical=allow_noncanonical
         )
 
         messages.extend(run_messages)
@@ -640,7 +672,7 @@ def _select_runs(
         a = (candidate.first.chain, candidate.first.resid)
         b = (candidate.second.chain, candidate.second.resid)
 
-        if candidate.score < MIN_SCORE:
+        if candidate.score < (55.0 if candidate.noncanonical else MIN_SCORE):
             continue
         if a in used or b in used:
             continue
@@ -662,6 +694,8 @@ def _select_runs(
 
 def guess_pairs(
     pdb_filename: str | Path,
+    *,
+    allow_noncanonical: bool = False,
 ) -> tuple[list[Candidate], list[str]]:
     parser = PDBParser(QUIET=True)
     structure = parser.get_structure(
@@ -683,7 +717,9 @@ def guess_pairs(
 
                 residues.append((residue, pair_residue))
 
-    candidates = list(_compatible_candidates(residues))
+    candidates = list(
+        _compatible_candidates(residues, allow_noncanonical=allow_noncanonical)
+    )
 
     residue_lookup = {
         (p.chain, int(p.resid)): (r, p)
@@ -691,7 +727,9 @@ def guess_pairs(
         if p.resid.isdigit()
     }
 
-    return _select_runs(candidates, residue_lookup)
+    return _select_runs(
+        candidates, residue_lookup, allow_noncanonical=allow_noncanonical
+    )
 
 def write_guess(
     filename: str | Path,
@@ -706,6 +744,13 @@ def write_guess(
         lines.append(
             f"{candidate.second.chain} {candidate.second.resid}"
         )
+        if candidate.noncanonical:
+            lines.append("# non-canonical: true")
+            if any(d > 3.5 for d in candidate.bond_distances):
+                lines.append(
+                    "# WARNING: non-canonical H-bond geometry is currently poor; "
+                    "this may be expected before refinement"
+            )
         lines.append("")
 
     Path(filename).write_text(
@@ -733,6 +778,11 @@ def main() -> None:
         default=None,
         help="Expected number of base pairs; mismatch produces a warning",
     )
+    parser.add_argument(
+        "--non-canonical",
+        action="store_true",
+        help="Explicitly allow non-canonical pair recipes (AG IX and GU XXVIII)",
+    )
 
     args = parser.parse_args()
 
@@ -745,7 +795,9 @@ def main() -> None:
     )
 
     fixed_pdb = validate_and_fix_pdb(args.pdb)
-    candidates, messages = guess_pairs(fixed_pdb)
+    candidates, messages = guess_pairs(
+        fixed_pdb, allow_noncanonical=args.non_canonical
+    )
 
     print(f"BASE PAIRS FOUND: {len(candidates)}")
 
@@ -767,7 +819,7 @@ def main() -> None:
         print(
             f"  {candidate.first.chain}{candidate.first.resid} "
             f"<-> {candidate.second.chain}{candidate.second.resid} "
-            f"{candidate.recipe:3s} "
+            f"{candidate.recipe:10s} "
             f"score={candidate.score:5.1f} "
             f"bonds="
             + ",".join(
@@ -775,6 +827,13 @@ def main() -> None:
                 for distance in candidate.bond_distances
             )
             + f" plane={candidate.plane_angle:.1f}°"
+            + (" non-canonical=true" if candidate.noncanonical else "")
+            + (
+                " WARNING: poor current H-bond geometry; check after refinement"
+                if candidate.noncanonical
+                and any(d > 3.5 for d in candidate.bond_distances)
+                else ""
+            )
         )
 
     write_guess(output, candidates)

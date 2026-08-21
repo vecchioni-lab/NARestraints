@@ -47,6 +47,21 @@ DT_BONDS = (
     ("D.N2", "T.O2", 2.8, 0.2),
 )
 
+# Non-canonical pair contacts. These deliberately use the experimentally
+# established hydrogen-bond distances only; recipe-specific angle targets
+# should be added later from validated structural statistics.
+AG_IX_ANGLES = ()
+AG_IX_BONDS = (
+    ("A.N6", "G.O6", 2.8, 0.2),
+    ("A.N1", "G.N1", 2.8, 0.2),
+)
+
+GU_XXVIII_ANGLES = ()
+GU_XXVIII_BONDS = (
+    ("G.O6", "T.N3", 2.8, 0.2),
+    ("G.N1", "T.O2", 2.8, 0.2),
+)
+
 AT_PARALLEL_T = ("C2", "O2", "N1", "N3", "C4", "O4", "C5", "C7", "C6")
 AT_PARALLEL_A = ("C2", "N1", "C6", "N6", "C5", "C4", "N3", "N9", "C8", "N7")
 
@@ -320,6 +335,82 @@ def generate_pair_restraints(
                     _selection_for_atoms(left, GC_PARALLEL_G, recipe.name),
                 )
             )
+    elif recipe.name == "AG_IX":
+        refs = {"A": left, "G": right}
+        for a1, a2, a3, ideal, sigma in AG_IX_ANGLES:
+            lines.append(
+                _angle_block(
+                    atom_selection(refs[a1[0]], a1[2:], recipe.name),
+                    atom_selection(refs[a2[0]], a2[2:], recipe.name),
+                    atom_selection(refs[a3[0]], a3[2:], recipe.name),
+                    ideal, sigma,
+                )
+            )
+        for a1, a2, ideal, sigma in AG_IX_BONDS:
+            lines.append(
+                _bond_block(
+                    atom_selection(refs[a1[0]], a1[2:], recipe.name),
+                    atom_selection(refs[a2[0]], a2[2:], recipe.name),
+                    *_bond_parameters(
+                        refs[a1[0]], a1[2:],
+                        refs[a2[0]], a2[2:],
+                        ideal, sigma, recipe.name, False,
+                    ),
+                )
+            )
+        if parallels:
+            lines.append(
+                _parallelity_block(
+                    _selection_for_atoms(left, GC_PARALLEL_G, recipe.name),
+                    _selection_for_atoms(right, GC_PARALLEL_G, recipe.name),
+                )
+            )
+        if planes:
+            lines.append(
+                _planarity_block(
+                    _selection_for_atoms(left, GC_PARALLEL_G, recipe.name),
+                    _selection_for_atoms(right, GC_PARALLEL_G, recipe.name),
+                )
+            )
+
+    elif recipe.name == "GU_XXVIII":
+        refs = {"G": left, "T": right}
+        for a1, a2, a3, ideal, sigma in GU_XXVIII_ANGLES:
+            lines.append(
+                _angle_block(
+                    atom_selection(refs[a1[0]], a1[2:], recipe.name),
+                    atom_selection(refs[a2[0]], a2[2:], recipe.name),
+                    atom_selection(refs[a3[0]], a3[2:], recipe.name),
+                    ideal, sigma,
+                )
+            )
+        for a1, a2, ideal, sigma in GU_XXVIII_BONDS:
+            lines.append(
+                _bond_block(
+                    atom_selection(refs[a1[0]], a1[2:], recipe.name),
+                    atom_selection(refs[a2[0]], a2[2:], recipe.name),
+                    *_bond_parameters(
+                        refs[a1[0]], a1[2:],
+                        refs[a2[0]], a2[2:],
+                        ideal, sigma, recipe.name, False,
+                    ),
+                )
+            )
+        if parallels:
+            lines.append(
+                _parallelity_block(
+                    _selection_for_atoms(left, GC_PARALLEL_G, recipe.name),
+                    _selection_for_atoms(right, AT_PARALLEL_T, recipe.name),
+                )
+            )
+        if planes:
+            lines.append(
+                _planarity_block(
+                    _selection_for_atoms(left, GC_PARALLEL_G, recipe.name),
+                    _selection_for_atoms(right, AT_PARALLEL_T, recipe.name),
+                )
+            )
+
     else:
         refs = {"G": left, "C": right}
         for a1, a2, a3, ideal, sigma in GC_ANGLE_RESTRAINTS:
