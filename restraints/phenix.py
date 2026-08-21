@@ -187,6 +187,34 @@ def _resolve_pair_orientation(
     )
 
 
+def _bond_parameters(
+    residue1: PairResidue,
+    canonical1: str,
+    residue2: PairResidue,
+    canonical2: str,
+    ideal: float,
+    sigma: float,
+    recipe_name: str,
+    sulfur_pair: bool,
+) -> tuple[float, float]:
+    """Set distance/sigma for a bond in a sulfur-containing base pair.
+
+    The sulfur contact itself is the strong anchor: 3.04 Å, sigma 0.2.
+    The other contacts in the same pair keep their ideal distance but use
+    sigma 0.4 Å so they can redistribute around the sulfur contact.
+    """
+    actual1 = atom_name(residue1, canonical1, recipe_name)
+    actual2 = atom_name(residue2, canonical2, recipe_name)
+    sulfur_contact = actual1.startswith("S") or actual2.startswith("S")
+
+    if sulfur_pair:
+        if sulfur_contact:
+            return 3.04, 0.2
+        return ideal, 0.4
+
+    return ideal, sigma
+
+
 def generate_pair_restraints(
     first: PairResidue,
     second: PairResidue,
@@ -223,8 +251,16 @@ def generate_pair_restraints(
                 _bond_block(
                     atom_selection(refs[a1[0]], a1[2:], recipe.name),
                     atom_selection(refs[a2[0]], a2[2:], recipe.name),
-                    ideal,
-                    sigma,
+                    *_bond_parameters(
+                        refs[a1[0]], a1[2:],
+                        refs[a2[0]], a2[2:],
+                        ideal, sigma, recipe.name,
+                        any(
+                            atom_name(ref, canonical, recipe.name).startswith("S")
+                            for ref in refs.values()
+                            for canonical in ref.atoms
+                        ),
+                    ),
                 )
             )
         if parallels:
@@ -258,8 +294,16 @@ def generate_pair_restraints(
                 _bond_block(
                     atom_selection(refs[a1[0]], a1[2:], recipe.name),
                     atom_selection(refs[a2[0]], a2[2:], recipe.name),
-                    ideal,
-                    sigma,
+                    *_bond_parameters(
+                        refs[a1[0]], a1[2:],
+                        refs[a2[0]], a2[2:],
+                        ideal, sigma, recipe.name,
+                        any(
+                            atom_name(ref, canonical, recipe.name).startswith("S")
+                            for ref in refs.values()
+                            for canonical in ref.atoms
+                        ),
+                    ),
                 )
             )
         if parallels:
@@ -293,8 +337,16 @@ def generate_pair_restraints(
                 _bond_block(
                     atom_selection(refs[a1[0]], a1[2:], recipe.name),
                     atom_selection(refs[a2[0]], a2[2:], recipe.name),
-                    ideal,
-                    sigma,
+                    *_bond_parameters(
+                        refs[a1[0]], a1[2:],
+                        refs[a2[0]], a2[2:],
+                        ideal, sigma, recipe.name,
+                        any(
+                            atom_name(ref, canonical, recipe.name).startswith("S")
+                            for ref in refs.values()
+                            for canonical in ref.atoms
+                        ),
+                    ),
                 )
             )
         if parallels:
