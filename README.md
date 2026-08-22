@@ -12,3 +12,6 @@ python -m NARestraints.guesser examples/dfPucker-fixed.pdb \
   --expected-pairs 20 \
   --non-canonical \
   -o examples/dfPucker-guessed.txt
+
+  python mirror_pdb.py input.pdb -o flipped.pdb
+  python mirror_pdb.py input.pdb 
