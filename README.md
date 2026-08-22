@@ -6,6 +6,8 @@ python -m restraints.guesser examples/L2T7.pdb --expected-pairs 19
 
 python -m restraints examples/DT.pdb examples/Std_padd.txt
 
+python -m NARestraints.guesser examples/dfPucker-fixed.pdb --non-canonical
+
 python -m NARestraints.guesser examples/dfPucker-fixed.pdb \
   --expected-pairs 20 \
   --non-canonical \
