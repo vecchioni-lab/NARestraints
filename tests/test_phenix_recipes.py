@@ -64,10 +64,9 @@ def test_d_t_uses_special_hybrid_recipe():
 
 
 def test_unsupported_pair_returns_none():
-    g = residue("A", 1, "G", standard_atoms("G"))
-    t = residue("B", 2, "T", standard_atoms("T"))
-    assert generate_pair_restraints(g, t) is None
-
+    a = residue("A", 1, "A", standard_atoms("A"))
+    c = residue("B", 2, "C", standard_atoms("C"))
+    assert generate_pair_restraints(a, c) is None
 
 def test_d_t_recipe_maps_t_roles_to_actual_atoms():
     d = PairResidue("A", "3", {

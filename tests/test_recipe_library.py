@@ -12,10 +12,10 @@ def test_configured_recipes():
     assert recipe_for("I", "C").name == "AT"
 
 
-def test_wobble_is_not_yet_supported():
-    assert recipe_for("G", "T") is None
+def test_noncanonical_recipes_are_supported():
+    assert recipe_for("G", "T").name == "GU_XXVIII"
+    assert recipe_for("A", "G").name == "AG_IX"
     assert recipe_for("A", "C") is None
 
-
 def test_library_is_explicitly_closed():
-    assert len(PAIR_RECIPES) == 7
+    assert len(PAIR_RECIPES) == 9
