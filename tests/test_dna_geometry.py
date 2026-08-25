@@ -20,7 +20,7 @@ def test_midpoint():
 
 def test_modified_residue_atom_mapping():
     structure = PDBParser(QUIET=True).get_structure("DNA", "examples/D3X3.pdb")
-    records = load_residue_records("data/Ligands.xlsx")
+    records = load_residue_records()
 
     cj1 = next(
         residue
@@ -39,7 +39,7 @@ def test_modified_residue_atom_mapping():
 
 def test_find_standard_sugar_attachment():
     structure = PDBParser(QUIET=True).get_structure("DNA", "examples/D3X3.pdb")
-    records = load_residue_records("data/Ligands.xlsx")
+    records = load_residue_records()
 
     residue = next(
         residue
@@ -55,7 +55,7 @@ def test_find_standard_sugar_attachment():
 
 def test_find_nonstandard_sugar_attachment():
     structure = PDBParser(QUIET=True).get_structure("PNA", "examples/9L5Z.pdb")
-    records = load_residue_records("data/Ligands.xlsx")
+    records = load_residue_records()
 
     residue = next(
         residue
@@ -71,7 +71,7 @@ def test_find_nonstandard_sugar_attachment():
 
 def test_glycosidic_vector():
     structure = PDBParser(QUIET=True).get_structure("DNA", "examples/D3X3.pdb")
-    records = load_residue_records("data/Ligands.xlsx")
+    records = load_residue_records()
 
     residue = next(
         residue
@@ -88,7 +88,7 @@ def test_glycosidic_vector():
 
 def test_nonstandard_glycosidic_vector():
     structure = PDBParser(QUIET=True).get_structure("PNA", "examples/9L5Z.pdb")
-    records = load_residue_records("data/Ligands.xlsx")
+    records = load_residue_records()
 
     residue = next(
         residue
@@ -105,7 +105,7 @@ def test_nonstandard_glycosidic_vector():
 
 def test_nonstandard_glycosidic_vector():
     structure = PDBParser(QUIET=True).get_structure("PNA", "examples/9L5Z.pdb")
-    records = load_residue_records("data/Ligands.xlsx")
+    records = load_residue_records()
 
     residue = next(
         residue

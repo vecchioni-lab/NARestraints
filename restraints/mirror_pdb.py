@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Mirror D/L nucleic-acid PDBs using the residue/atom definitions in
-data/Ligands.xlsx.
+the bundled Ligands.xlsx workbook.
 
 Geometry:
     X -> -X
@@ -29,6 +29,7 @@ important for mappings such as DA <-> 0DA, where the atom names differ.
 from __future__ import annotations
 
 import argparse
+from importlib.resources import as_file, files
 from pathlib import Path
 
 from Bio.PDB import PDBIO, PDBParser, Select
@@ -61,9 +62,9 @@ def normalise_code(value):
     return str(value).strip()
 
 
-def load_ligand_definitions(xlsx_path):
+def load_ligand_definitions(xlsx_path=None):
     """
-    Read atom definitions from Ligands.xlsx.
+    Read atom definitions from an explicit or bundled Ligands.xlsx.
 
     Returns:
         {
@@ -73,11 +74,26 @@ def load_ligand_definitions(xlsx_path):
     The spreadsheet is the authoritative source for atom naming.
     """
 
-    wb = load_workbook(
-        xlsx_path,
-        read_only=True,
-        data_only=True,
-    )
+    if xlsx_path is not None:
+        return _load_ligand_definitions(xlsx_path)
+
+    if __package__:
+        workbook_resource = files(__package__).joinpath("data", "Ligands.xlsx")
+        with as_file(workbook_resource) as bundled_workbook:
+            return _load_ligand_definitions(bundled_workbook)
+
+    # Preserve direct-script execution as well as installed package execution.
+    bundled_workbook = Path(__file__).resolve().parent / "data" / "Ligands.xlsx"
+    return _load_ligand_definitions(bundled_workbook)
+
+
+def _load_ligand_definitions(xlsx_path):
+    """Read ligand definitions from a resolved filesystem path."""
+    xlsx_path = Path(xlsx_path)
+    if not xlsx_path.is_file():
+        raise FileNotFoundError(f"Ligands spreadsheet not found: {xlsx_path}")
+
+    wb = load_workbook(xlsx_path, read_only=True, data_only=True)
 
     definitions = {}
 
@@ -96,68 +112,69 @@ def load_ligand_definitions(xlsx_path):
         "C5-mod",
     }
 
-    for ws in wb.worksheets:
+    try:
+        for ws in wb.worksheets:
 
-        rows = ws.iter_rows(values_only=True)
+            rows = ws.iter_rows(values_only=True)
 
-        try:
-            headers = list(next(rows))
-        except StopIteration:
-            continue
-
-        if "Ligand code" not in headers:
-            continue
-
-        code_index = headers.index("Ligand code")
-
-        atom_indices = [
-            i
-            for i, header in enumerate(headers)
-            if (
-                header is not None
-                and header != "Ligand code"
-                and header not in metadata_columns
-            )
-        ]
-
-        for row in rows:
-
-            if code_index >= len(row):
+            try:
+                headers = list(next(rows))
+            except StopIteration:
                 continue
 
-            code = normalise_code(row[code_index])
-
-            if not code:
+            if "Ligand code" not in headers:
                 continue
 
-            atoms = []
+            code_index = headers.index("Ligand code")
 
-            for i in atom_indices:
+            atom_indices = [
+                i
+                for i, header in enumerate(headers)
+                if (
+                    header is not None
+                    and header != "Ligand code"
+                    and header not in metadata_columns
+                )
+            ]
 
-                if i >= len(row):
+            for row in rows:
+
+                if code_index >= len(row):
                     continue
 
-                value = row[i]
+                code = normalise_code(row[code_index])
 
-                if value is None:
+                if not code:
                     continue
 
-                value = str(value).strip()
+                atoms = []
 
-                if not value or value == "/":
-                    continue
+                for i in atom_indices:
 
-                atoms.append(value)
+                    if i >= len(row):
+                        continue
 
-            if atoms:
-                definitions.setdefault(code, atoms)
+                    value = row[i]
 
-    wb.close()
+                    if value is None:
+                        continue
+
+                    value = str(value).strip()
+
+                    if not value or value == "/":
+                        continue
+
+                    atoms.append(value)
+
+                if atoms:
+                    definitions.setdefault(code, atoms)
+    finally:
+        wb.close()
 
     return definitions
 
 
-def build_atom_maps(xlsx_path):
+def build_atom_maps(xlsx_path=None):
     """
     Construct explicit atom-name mappings for each D/L residue pair.
 
@@ -343,36 +360,8 @@ def mirror_pdb(
 
         output_pdb = Path(output_pdb)
 
-    # Default spreadsheet location:
-    #
-    # NARestraints/
-    #   data/
-    #     Ligands.xlsx
-    #
-    # script:
-    #
-    # NARestraints/
-    #   restraints/
-    #     mirror_pdb.py
-    #
-    if ligands_xlsx is None:
-
-        ligands_xlsx = (
-            Path(__file__).resolve().parent.parent
-            / "data"
-            / "Ligands.xlsx"
-        )
-
-    else:
-
+    if ligands_xlsx is not None:
         ligands_xlsx = Path(ligands_xlsx)
-
-    if not ligands_xlsx.exists():
-
-        raise FileNotFoundError(
-            f"Ligands spreadsheet not found: "
-            f"{ligands_xlsx}"
-        )
 
     atom_maps = build_atom_maps(
         ligands_xlsx
@@ -417,7 +406,7 @@ def main():
     parser = argparse.ArgumentParser(
         description=(
             "Mirror a D/L nucleic-acid PDB using "
-            "the atom definitions in data/Ligands.xlsx."
+            "the atom definitions in the bundled Ligands.xlsx."
         )
     )
 
@@ -439,7 +428,7 @@ def main():
         "--ligands",
         help=(
             "Path to Ligands.xlsx "
-            "(default: data/Ligands.xlsx)"
+            "(default: bundled restraints/data/Ligands.xlsx)"
         ),
     )
 

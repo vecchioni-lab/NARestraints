@@ -701,7 +701,7 @@ def guess_pairs(
     structure = parser.get_structure(
         "NARestraints", str(pdb_filename)
     )
-    records = load_residue_records("data/Ligands.xlsx")
+    records = load_residue_records()
 
     residues = []
 

@@ -35,7 +35,7 @@ def find_atom_name_mismatches(pdb_filename: str | Path) -> tuple[list[tuple], li
     """
     parser = PDBParser(QUIET=True)
     structure = parser.get_structure("NARestraintsValidation", str(pdb_filename))
-    records = load_residue_records("data/Ligands.xlsx")
+    records = load_residue_records()
 
     fixes: list[tuple] = []
     errors: list[str] = []

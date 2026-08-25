@@ -90,7 +90,7 @@ def build_phil_from_pdb(
 ) -> None:
     parser = PDBParser(QUIET=True)
     structure = parser.get_structure("NARestraints", str(pdb_filename))
-    records = load_residue_records("data/Ligands.xlsx")
+    records = load_residue_records()
 
     pair_blocks: list[str] = []
     all_chain_residues: list[PairResidue] = []

@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "NARestraints"
+version = "1.1.1"
+description = "Nucleic-acid geometry analysis and Phenix restraint generation"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "biopython>=1.83",
+  "numpy>=1.26",
+  "openpyxl>=3.1",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+[project.scripts]
+narestraints = "restraints.cli:main"
+narestraints-guesser = "restraints.guesser:main"
+narestraints-mirror = "restraints.mirror_pdb:main"
+
+[tool.setuptools.packages.find]
+include = ["restraints*"]
+
+[tool.setuptools.package-data]
+restraints = ["data/*.xlsx"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
