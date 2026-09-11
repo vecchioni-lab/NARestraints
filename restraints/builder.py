@@ -1,4 +1,3 @@
-
 from __future__ import annotations
 
 from pathlib import Path
@@ -7,9 +6,9 @@ from typing import Iterable
 from Bio.PDB import PDBParser
 
 from .base_pairs import BasePairStretch
-from .phenix import PairResidue, generate_pair_restraints, generate_stacking_restraints, write_phil
-from .recipe_library import recipe_for
+from .phenix import PairResidue, generate_pair_restraints, write_phil
 from .residue_library import find_residue, load_residue_records
+from .stacking import StackingResidue, generate_chain_stacking_restraints
 
 
 _PAIR_CATEGORIES = {"A", "T", "G", "C", "D", "B", "S", "Z", "P", "K", "X", "I"}
@@ -79,6 +78,28 @@ def _get_residue(structure, chain: str, resid: str):
     raise ValueError(f"Could not find {chain}:{resid} in the PDB.")
 
 
+def _stacking_residue(records: list[dict], residue) -> StackingResidue:
+    """Build a stacking record without making unknown chemistry fatal.
+
+    Known residues receive the full workbook mapping needed for explicit
+    modified-base stacking. If a residue is not yet mappable, retain its
+    identity so the stacking layer can fall back to a generic Phenix
+    ``stacking_pair`` and emit a warning rather than dropping the stack.
+    """
+    mapped = None
+    try:
+        mapped = pair_residue_from_pdb(records, residue)
+    except ValueError:
+        pass
+
+    return StackingResidue(
+        chain=residue.get_parent().get_id(),
+        resid=str(residue.id[1]),
+        residue_name=residue.get_resname().strip(),
+        mapped=mapped,
+    )
+
+
 def build_phil_from_pdb(
     pdb_filename: str | Path,
     stretches: Iterable[BasePairStretch],
@@ -93,7 +114,6 @@ def build_phil_from_pdb(
     records = load_residue_records()
 
     pair_blocks: list[str] = []
-    all_chain_residues: list[PairResidue] = []
 
     for stretch in stretches:
         for pair in stretch.pairs():
@@ -103,7 +123,6 @@ def build_phil_from_pdb(
             p1 = pair_residue_from_pdb(records, r1)
             p2 = pair_residue_from_pdb(records, r2)
 
-            recipe = recipe_for(p1.base_class, p2.base_class)
             block = generate_pair_restraints(
                 p1,
                 p2,
@@ -120,24 +139,33 @@ def build_phil_from_pdb(
                 continue
             pair_blocks.append(block)
 
-        stacking_block = ""
+    stacking_block = ""
     if include_stacking:
         # Match the MATLAB behavior: stacking is generated for consecutive
         # residues in each PDB chain, independently of selected base pairs.
+        # Canonical stacks remain Phenix stacking_pair records. Any stack
+        # touching a mapped modified residue becomes an explicit parallelity
+        # geometry edit so Phenix does not need to infer a plane from the
+        # modified residue name.
         for model in structure:
             for chain in model:
-                residues = list(chain.get_residues())
-
                 stacking_residues = [
-                    (chain.id, str(residue.id[1]))
-                    for residue in residues
+                    _stacking_residue(records, residue)
+                    for residue in chain.get_residues()
                 ]
 
-                if len(stacking_residues) >= 2:
-                    block = generate_stacking_restraints(stacking_residues)
-                    if block:
-                        stacking_block += (
-                            "\n\n" if stacking_block else ""
-                        ) + block
+                if len(stacking_residues) < 2:
+                    continue
+
+                generic, manual, warnings = generate_chain_stacking_restraints(
+                    stacking_residues
+                )
+                if generic:
+                    stacking_block += (
+                        "\n\n" if stacking_block else ""
+                    ) + generic
+                pair_blocks.extend(manual)
+                for warning in warnings:
+                    print(f"WARNING: {warning}")
 
     write_phil(output_filename, pair_blocks, stacking_block)
