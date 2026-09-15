@@ -1,0 +1,77 @@
+name: Verify and publish NARestraints
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+    paths: [pyproject.toml]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: narestraints-release-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.10', '3.12', '3.14']
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Verify published workbook provenance
+        shell: bash
+        run: |
+          test "$(git hash-object restraints/data/Ligands.xlsx)" = 24dad3df897f982c8c771d77600f76e12f28b5a4
+      - name: Build and test both installed distributions
+        shell: bash
+        run: bash scripts/verify_release.sh
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: matrix.python == '3.12'
+        with:
+          name: narestraints-dist
+          path: dist/
+          if-no-files-found: error
+  publish:
+    needs: verify
+    if: github.repository == 'vecchioni-lab/NARestraints' && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: narestraints-dist
+          path: dist
+      - name: Publish tested v1.1.2 artifacts without replacing a release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -qx 'version = "1.1.2"' pyproject.toml
+          (cd dist && sha256sum -c SHA256SUMS)
+          if gh release view v1.1.2 >/dev/null 2>&1; then
+            echo 'v1.1.2 already exists; refusing to overwrite it.'
+            exit 1
+          fi
+          if gh api "repos/$GH_REPO/git/ref/tags/v1.1.2" >/dev/null 2>&1; then
+            echo 'v1.1.2 tag already exists; refusing to retarget it.'
+            exit 1
+          fi
+          gh release create v1.1.2 dist/*.whl dist/*.tar.gz dist/SHA256SUMS \
+            --target "$GITHUB_SHA" --title 'NARestraints v1.1.2 — modified-residue stacking' \
+            --notes-file docs/release-v1.1.2.md --draft
+          gh release edit v1.1.2 --draft=false --latest
