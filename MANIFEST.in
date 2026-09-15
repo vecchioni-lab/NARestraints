@@ -1,0 +1,6 @@
+include README.md README_PORT.md CHANGELOG.md
+include examples/D3X3.pdb examples/9L5Z.pdb examples/DT.pdb examples/Std_padd.txt
+recursive-include docs *.md
+recursive-include scripts *.py *.sh
+recursive-include tests *.py
+global-exclude .DS_Store *.pyc __pycache__

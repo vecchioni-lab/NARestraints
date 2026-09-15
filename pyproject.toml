@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "NARestraints"
-version = "1.1.1"
+version = "1.1.2"
 description = "Nucleic-acid geometry analysis and Phenix restraint generation"
 readme = "README.md"
 requires-python = ">=3.10"
