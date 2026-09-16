@@ -1,5 +1,19 @@
 # Changelog
 
+## Unreleased
+
+- Add explicit-site 5'-terminal phosphomonoester geometry support for Phenix.
+  Declared terminal phosphate sites receive the three OP3-centered angle
+  restraints missing from the standard nucleotide dictionary while leaving
+  Phenix's existing P-OP3 bond and ordinary P/OP1/OP2/O5' restraints intact.
+- Use CSD-derived terminal phosphomonoester targets from Kowiel et al., Nucleic
+  Acids Research 44 (2016): OP1-P-OP3 114.0(7) degrees, OP2-P-OP3 112.8(10)
+  degrees, and OP3-P-O5' 102.9(12) degrees. The API is explicit-site only and
+  fails closed when the required phosphate atoms are absent; no terminal state
+  is inferred from coordinates or residue names.
+- No changes to pair recipes, sulfur-contact targets, or the ligand workbook.
+  Live Phenix/NASolve refinement validation is still required before release.
+
 ## 1.1.2 — 2026-09-15
 
 - Release the previously merged modified-residue stacking fix (PR #1): explicit

@@ -9,6 +9,7 @@ from .base_pairs import BasePairStretch
 from .phenix import PairResidue, generate_pair_restraints, write_phil
 from .residue_library import find_residue, load_residue_records
 from .stacking import StackingResidue, generate_chain_stacking_restraints
+from .terminal_phosphate import generate_terminal_phosphate_restraints
 
 
 _PAIR_CATEGORIES = {"A", "T", "G", "C", "D", "B", "S", "Z", "P", "K", "X", "I"}
@@ -78,6 +79,15 @@ def _get_residue(structure, chain: str, resid: str):
     raise ValueError(f"Could not find {chain}:{resid} in the PDB.")
 
 
+def _site_parts(site: str) -> tuple[str, str]:
+    if not isinstance(site, str) or site.count(":") != 1:
+        raise ValueError(f"Terminal phosphate site {site!r} must use CHAIN:RESID")
+    chain, resid = (part.strip() for part in site.split(":", 1))
+    if not chain or not resid:
+        raise ValueError(f"Terminal phosphate site {site!r} must use CHAIN:RESID")
+    return chain, resid
+
+
 def _stacking_residue(records: list[dict], residue) -> StackingResidue:
     """Build a stacking record without making unknown chemistry fatal.
 
@@ -108,6 +118,7 @@ def build_phil_from_pdb(
     parallels: bool = True,
     planes: bool = True,
     include_stacking: bool = True,
+    terminal_phosphate_sites: Iterable[str] = (),
 ) -> None:
     parser = PDBParser(QUIET=True)
     structure = parser.get_structure("NARestraints", str(pdb_filename))
@@ -138,6 +149,19 @@ def build_phil_from_pdb(
                 )
                 continue
             pair_blocks.append(block)
+
+    seen_terminal_sites: set[str] = set()
+    for raw_site in terminal_phosphate_sites:
+        chain, resid = _site_parts(raw_site)
+        site = f"{chain}:{resid}"
+        if site in seen_terminal_sites:
+            raise ValueError(f"Duplicate terminal phosphate site: {site}")
+        seen_terminal_sites.add(site)
+        residue = _get_residue(structure, chain, resid)
+        atom_names = {atom.get_name().strip() for atom in residue.get_atoms()}
+        pair_blocks.append(
+            generate_terminal_phosphate_restraints(chain, resid, atom_names)
+        )
 
     stacking_block = ""
     if include_stacking:
