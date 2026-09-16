@@ -44,9 +44,9 @@ def test_terminal_op3_recipe_fails_closed_when_op3_missing():
 
 def _atom(serial: int, name: str, element: str) -> str:
     return (
-        f"ATOM  {serial:5d} {name:>4s}  DC D   1      "
+        f"{'ATOM':<6}{serial:5d} {name:>4s} {'DC':>3s} {'D':1s}{1:4d}    "
         f"{float(serial):8.3f}{0.0:8.3f}{0.0:8.3f}"
-        f"  1.00 20.00          {element:>2s}\n"
+        f"{1.00:6.2f}{20.00:6.2f}          {element:>2s}\n"
     )
 
 
