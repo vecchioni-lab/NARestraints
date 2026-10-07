@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased — modified-pair role orientation (candidate; native confirmation pending)
+## 1.1.3 — 2026-10-08 (release candidate; tag pending CI)
 
 - Preserve the existing named B:S, Z:P, K:X and D:T recipes and their
   experimental identities. NARestraints' `GC` is the shared three-contact
@@ -16,9 +16,21 @@
   registered, and none is invented in this patch. I:C stays unchanged pending
   a separate evidence-based assessment; all other recipes and the ligand
   workbook are untouched.
-- This branch has not yet passed the user's local regression/native PostMR
-  check and is not a released package update. Preserve the failed
-  NASolve GZ11_ZP attempt; retest in a fresh attempt only after validation.
+- GitHub candidate CI passed Python 3.10/3.12/3.14 (source and installed
+  wheel/sdist) before release version bump; final 1.1.3 CI must also pass.
+  The user reported 21/21 focused and a green corrected full NARestraints
+  regression from the independent candidate worktree.
+- The corrected Z:P pair passed native NASolve PostMR with three checked
+  P:Z contacts and no geometry-force override. After an independent
+  NASolve Saenger-template compatibility correction for modified off-pair
+  bases, native Phenix AutoRefine reached numerical SOLVED/refine-001 with
+  frozen input integrity OK. User reported good visual bonds and planes in
+  Coot (mild plane deviations acceptable).
+- Real B:S/K:X native NASolve tests with unavailable local component
+  dictionaries remain pending and are **not** represented as passing.
+  The synthetic modified-base W challenge is not proof of the true
+  experimental chemistry. Existing historical runs and the dirty local
+  NARestraints feature checkout remain untouched.
 
 ## 1.1.2 — 2026-09-15
 
