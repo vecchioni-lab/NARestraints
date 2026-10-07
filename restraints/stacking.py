@@ -24,6 +24,8 @@ _PHENIX_STANDARD_NA_CODES = {
 # Base-plane atom templates follow the same role geometry used by the reviewed
 # pair recipes. Modified residue atom names are resolved through the workbook
 # mapping by atom_name(), so, for example, a canonical O4 role may select S4.
+# Keep B:S, Z:P and K:X plane roles aligned with PAIR_RECIPES. Matching
+# bases by sheet order alone is unsafe: Z and K are the C-like halves.
 _PLANE_ATOMS_BY_BASE_CLASS = {
     "A": AT_PARALLEL_A,
     "I": AT_PARALLEL_A,
@@ -31,12 +33,12 @@ _PLANE_ATOMS_BY_BASE_CLASS = {
     "G": GC_PARALLEL_G,
     "D": GC_PARALLEL_G,
     "B": GC_PARALLEL_G,
-    "Z": GC_PARALLEL_G,
-    "K": GC_PARALLEL_G,
+    "P": GC_PARALLEL_G,
+    "X": GC_PARALLEL_G,
     "C": GC_PARALLEL_C,
     "S": GC_PARALLEL_C,
-    "P": GC_PARALLEL_C,
-    "X": GC_PARALLEL_C,
+    "Z": GC_PARALLEL_C,
+    "K": GC_PARALLEL_C,
 }
 
 

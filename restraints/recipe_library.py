@@ -27,9 +27,15 @@ PAIR_RECIPES: dict[frozenset[str], PairRecipe] = {
     frozenset(("A", "T")): PairRecipe("AT", frozenset(("A",)), frozenset(("T",))),
     frozenset(("G", "C")): PairRecipe("GC", frozenset(("G",)), frozenset(("C",))),
     frozenset(("D", "T")): PairRecipe("D_T", frozenset(("D",)), frozenset(("T",))),
+    # Explicit sheet-family orientation. The GC engine's first role requests
+    # guanine-like N1/N2/O6, and its second requests cytosine-like O2/N3/N4.
+    # Pair identity is unordered; role assignment is not. The B:S ordering was
+    # already correct. Z:P and K:X previously had their roles reversed.
     frozenset(("B", "S")): PairRecipe("GC", frozenset(("B",)), frozenset(("S",))),
-    frozenset(("Z", "P")): PairRecipe("GC", frozenset(("Z",)), frozenset(("P",))),
-    frozenset(("K", "X")): PairRecipe("GC", frozenset(("K",)), frozenset(("X",))),
+    frozenset(("Z", "P")): PairRecipe("GC", frozenset(("P",)), frozenset(("Z",))),
+    frozenset(("K", "X")): PairRecipe("GC", frozenset(("X",)), frozenset(("K",))),
+    # D is 2,6-diaminopurine-like; D:T uses its dedicated three-contact
+    # D_T geometry. Do not invent a D:A pair or coerce it through GC.
     frozenset(("I", "C")): PairRecipe("AT", frozenset(("I",)), frozenset(("C",))),
     # Explicitly supported non-canonical geometries. The guesser must
     # opt in before these recipes are considered.

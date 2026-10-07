@@ -6,7 +6,7 @@ def residue(chain, resid, base, atoms):
 
 
 def standard_atoms(base):
-    if base in {"A", "G", "D", "B", "Z", "K"}:
+    if base in {"A", "G", "D", "B", "P", "X"}:
         atoms = {
             "C2": "C2", "C6": "C6", "N1": "N1", "C5": "C5", "C4": "C4",
             "N3": "N3", "N9": "N9", "C8": "C8", "N7": "N7",
@@ -83,3 +83,16 @@ def test_d_t_recipe_maps_t_roles_to_actual_atoms():
     assert block is not None
     assert "chain B and resid 4 and name O4" in block
     assert "chain B and resid 4 and name N4" not in block
+
+
+def test_all_three_modified_gc_families_have_complementary_synthetic_roles():
+    # Do not let the original G-like Z/K fixtures mask flipped recipe roles.
+    for g_like, c_like in (("B", "S"), ("P", "Z"), ("X", "K")):
+        g = residue("A", 12, g_like, standard_atoms(g_like))
+        c = residue("B", 4, c_like, standard_atoms(c_like))
+        generated = generate_pair_restraints(g, c)
+        assert generated is not None
+        assert generated == generate_pair_restraints(c, g)
+        assert generated.count("distance_ideal = 2.8") == 3
+        assert "chain A and resid 12 and name N2" in generated
+        assert "chain B and resid 4 and name O2" in generated
