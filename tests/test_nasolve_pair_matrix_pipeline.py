@@ -6,9 +6,17 @@ from pathlib import Path
 
 import pytest
 
-from scripts.stage_nasolve_pair_matrix import (
-    ANNOTATED_A, ANNOTATED_C, CASES, StagingError, stage_matrix,
-)
+# This stager is deliberately a source-checkout utility, not part of the
+# NARestraints wheel. The release harness runs tests a second time in an
+# isolated installed-distribution environment that contains no scripts/.
+try:
+    from scripts.stage_nasolve_pair_matrix import (
+        ANNOTATED_A, ANNOTATED_C, CASES, StagingError, stage_matrix,
+    )
+except ImportError:
+    pytestmark = pytest.mark.skip(
+        reason="source-only NASolve staging utility absent from installed distribution"
+    )
 
 
 def _fake_nasolve(root: Path) -> Path:
