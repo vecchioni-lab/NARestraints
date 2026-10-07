@@ -1,5 +1,25 @@
 # Changelog
 
+## Unreleased — modified-pair role orientation (candidate; native confirmation pending)
+
+- Preserve the existing named B:S, Z:P, K:X and D:T recipes and their
+  experimental identities. NARestraints' `GC` is the shared three-contact
+  *geometry template*, not a user-forced G:C identity substitution.
+- Correct the reversed Z:P and K:X roles: B/P/X are guanine-like (N1/N2/O6)
+  and S/Z/K cytosine-like (O2/N3/N4). Keep B:S unchanged.
+- Align modified-base stacking-plane selection with those role assignments.
+- Replace misleading Z/K guanine-like synthetic fixtures and add tests using
+  actual `Ligands.xlsx` records from the B, S, Z, P, K, X and D sheets,
+  plus a thymine partner for the separate `D_T` recipe. Also verify pair order
+  reversal and the exact contact/plane atom selections.
+- D denotes the reviewed diaminopurine-like role in D:T; no D:A recipe is
+  registered, and none is invented in this patch. I:C stays unchanged pending
+  a separate evidence-based assessment; all other recipes and the ligand
+  workbook are untouched.
+- This branch has not yet passed the user's local regression/native PostMR
+  check and is not a released package update. Preserve the failed
+  NASolve GZ11_ZP attempt; retest in a fresh attempt only after validation.
+
 ## 1.1.2 — 2026-09-15
 
 - Release the previously merged modified-residue stacking fix (PR #1): explicit
