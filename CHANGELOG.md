@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.1.3 — 2026-10-08 (release candidate; tag pending CI)
+## 1.1.3 — 2026-10-08
 
 - Preserve the existing named B:S, Z:P, K:X and D:T recipes and their
   experimental identities. NARestraints' `GC` is the shared three-contact
