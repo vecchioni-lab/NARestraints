@@ -33,6 +33,11 @@ jobs:
       - name: Build and test both installed distributions
         shell: bash
         run: bash scripts/verify_release.sh
+      - name: Test source-only NASolve modified-pair matrix stager
+        shell: bash
+        run: |
+          python -m pip install ".[test]"
+          python -m pytest -q tests/test_nasolve_pair_matrix_pipeline.py
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: matrix.python == '3.12'
         with:
