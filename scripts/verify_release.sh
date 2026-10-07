@@ -23,7 +23,7 @@ for kind in wheel sdist; do
   cp -R "$ROOT/tests" "$ROOT/examples" "$WORK/test-$kind/"
   (cd "$WORK/test-$kind" && "$PY" -I -m pytest -q --import-mode=importlib tests)
   (cd "$WORK/test-$kind" && "$PY" -I "$ROOT/scripts/check_installed.py" \
-    --source-root "$ROOT" --expected-version 1.1.2)
+    --source-root "$ROOT" --expected-version 1.1.3)
 done
 mkdir -p "$ROOT/dist"
 cp "$WORK/dist/"* "$ROOT/dist/"
