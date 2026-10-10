@@ -50,6 +50,31 @@ B 125:119
 
 Blank lines separate stretches; ranges may run forward or backward.
 
+## Reviewed recipe library
+
+Pair identity and restraint geometry are separate. Pair lookup is order-independent;
+the mapped roles within a recipe are ordered.
+
+| Pair | Recipe | First role / second role |
+| --- | --- | --- |
+| A:T | `AT` | A / T |
+| G:C | `GC` | G / C |
+| D:T | `D_T` | D / T |
+| B:S | `GC` | B / S |
+| Z:P | `GC` | P / Z |
+| K:X | `GC` | X / K |
+| I:C | `AT` | I / C |
+| A:G | `AG_IX` | A / G |
+| G:T | `GU_XXVIII` | G / T |
+
+`AG_IX` and `GU_XXVIII` currently provide distance restraints without angle
+arrays; the guesser requires `--non-canonical` to consider them. Among recognized
+residue categories, a pair with no registered recipe produces a warning and
+skips pair-specific restraints. Missing mappings or unsupported categories can
+still stop generation; the `Other` extension is planned work. The explicit table
+in `restraints/recipe_library.py` is the implementation authority; the bundled
+atom mappings are in `restraints/data/Ligands.xlsx`.
+
 ## What changed in 1.1.3
 
 B:S remains B=G-like/S=C-like; the reversed **Z:P** and **K:X** recipe roles
@@ -66,10 +91,13 @@ refinement have been demonstrated using an independent NASolve W-template
 compatibility correction. This does **not** prove the experimental chemistry
 of the donor reflections or mark independent B:S/K:X native campaigns complete.
 
-See [v1.1.3 release notes](docs/release-v1.1.3.md) for exact evidence and
-limitations. [v1.1.2 release notes](docs/release-v1.1.2.md) and the
-[historical development handoff](docs/development-handoff.md) remain
-preserved for prior behavior and later backlog.
+See [v1.1.3 release notes](docs/release-v1.1.3.md) for release evidence and
+limitations. The [current development handoff](docs/development-handoff.md)
+records later integration progress and open work: the combined WC-like native
+preparation/linkage/coverage diagnostics passed, while geometry qualification
+and a fresh full-auto acceptance run remain pending. Historical
+[v1.1.2 release notes](docs/release-v1.1.2.md) and the
+[archived handoff/port notes](docs/history/README.md) preserve prior evidence.
 
 ## Release verification
 

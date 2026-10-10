@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+- Refresh the active documentation checkpoint against v1.1.3 and the subsequent
+  native NASolve combined-run receipts, retaining the boundary between
+  preparation/linkage/coverage passes and pending geometry/full-auto validation.
+- Put the planned SMILES/CIF audit after the geometry test and before Topo/Scout
+  in the NASolve-owned workflow. No audit implementation or scientific code changes.
+- Consolidate current recipe documentation in the README; preserve the superseded
+  port README and September handoff as exact, checksummed historical backups.
+
 ## 1.1.3 — 2026-10-08
 
 - Preserve the existing named B:S, Z:P, K:X and D:T recipes and their

@@ -1,7 +1,8 @@
-# NARestraints v1.1.2 — current release checkpoint
+# NARestraints v1.1.2 — historical release checkpoint
 
-Updated 2026-09-15. Read this before the preserved historical
-`development-handoff.md` and `README_PORT.md`.
+Release record dated 2026-09-15; superseded by [v1.1.3](release-v1.1.3.md).
+For current status and remaining work, read the [development handoff](development-handoff.md).
+Statements below describe the v1.1.2 checkpoint.
 
 ## Scope and provenance
 

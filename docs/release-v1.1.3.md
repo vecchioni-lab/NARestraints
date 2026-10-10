@@ -4,6 +4,10 @@ This is a **reviewed maintenance release** of NARestraints' explicit modified
 base-pair geometry and stacking-plane selection. It succeeds v1.1.2 without
 overwriting or retargeting that prior release or tag.
 
+This document preserves the release-time evidence. The [current development
+handoff](development-handoff.md) records subsequent NASolve combined-run
+preparation/linkage/coverage checks and the still-pending geometry qualification.
+
 ## Corrected chemistry and unchanged boundaries
 
 NARestraints recognizes B:S, Z:P and K:X as explicit **named modified pairs**.
