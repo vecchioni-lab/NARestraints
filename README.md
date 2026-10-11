@@ -1,5 +1,14 @@
 # NARestraints
 
+The [reviewed workbook audit](docs/workbook-audit-2026-10-11.md) documents
+unreleased 5BU/BRU metadata, DF/S6G atom-name corrections and the authorized
+canonical-C5 whitespace cleanup. Tagged v1.1.3 retains its original workbook.
+
+For maintainers, document substantial features for human readers with purpose,
+inputs/outputs, method, tools, evidence and limitations, including a methods
+paragraph when useful for publication. Update that feature description whenever
+its behavior or dependencies change; keep planned capabilities explicit.
+
 Generate Phenix nucleic-acid restraint PHIL from a PDB model and a reviewed
 base-pair range file. NARestraints also provides a base-pair guesser and a D/L
 nucleic-acid mirroring tool. It is usable independently of NASolve.

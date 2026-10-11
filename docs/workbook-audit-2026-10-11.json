@@ -1,0 +1,1289 @@
+{
+  "after_sha256": "afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5",
+  "all_cell_styles_types_and_dimensions_preserved": true,
+  "all_other_cell_values_preserved": true,
+  "all_other_part_bytes_preserved": true,
+  "authoring": "@oai/artifact-tool",
+  "before_sha256": "94a66af42081188fd95f3fdcbe04cb01bed8f1826772597272320a8b4c0433b2",
+  "changed_cells": [
+    {
+      "after": "RNA",
+      "before": "DNA",
+      "cell": "F27",
+      "code": "5BU",
+      "evidence_code": "5BU",
+      "reason": "Public CCD type, explicit O2-prime inventory and component name establish sugar identity; abbreviation updated to match.",
+      "sheet": "thymine"
+    },
+    {
+      "after": "5-bromo-rU",
+      "before": "5-bromo-dU",
+      "cell": "C27",
+      "code": "5BU",
+      "evidence_code": "5BU",
+      "reason": "Public CCD type, explicit O2-prime inventory and component name establish sugar identity; abbreviation updated to match.",
+      "sheet": "thymine"
+    },
+    {
+      "after": "DNA",
+      "before": "RNA",
+      "cell": "F62",
+      "code": "BRU",
+      "evidence_code": "BRU",
+      "reason": "Public CCD type, explicit O2-prime inventory and component name establish sugar identity; abbreviation updated to match.",
+      "sheet": "thymine"
+    },
+    {
+      "after": "5-bromo-dU",
+      "before": "5-bromo-rU",
+      "cell": "C62",
+      "code": "BRU",
+      "evidence_code": "BRU",
+      "reason": "Public CCD type, explicit O2-prime inventory and component name establish sugar identity; abbreviation updated to match.",
+      "sheet": "thymine"
+    },
+    {
+      "after": "RNA",
+      "before": "DNA",
+      "cell": "G429",
+      "code": "5BU",
+      "evidence_code": "5BU",
+      "reason": "Public CCD type, explicit O2-prime inventory and component name establish sugar identity; abbreviation updated to match.",
+      "sheet": "sort"
+    },
+    {
+      "after": "5-bromo-rU",
+      "before": "5-bromo-dU",
+      "cell": "D429",
+      "code": "5BU",
+      "evidence_code": "5BU",
+      "reason": "Public CCD type, explicit O2-prime inventory and component name establish sugar identity; abbreviation updated to match.",
+      "sheet": "sort"
+    },
+    {
+      "after": "DNA",
+      "before": "RNA",
+      "cell": "G428",
+      "code": "BRU",
+      "evidence_code": "BRU",
+      "reason": "Public CCD type, explicit O2-prime inventory and component name establish sugar identity; abbreviation updated to match.",
+      "sheet": "sort"
+    },
+    {
+      "after": "5-bromo-dU",
+      "before": "5-bromo-rU",
+      "cell": "D428",
+      "code": "BRU",
+      "evidence_code": "BRU",
+      "reason": "Public CCD type, explicit O2-prime inventory and component name establish sugar identity; abbreviation updated to match.",
+      "sheet": "sort"
+    },
+    {
+      "after": "S1",
+      "before": "S2",
+      "cell": "N208",
+      "code": "DF",
+      "reason": "Existing reviewed A1AAZ/DF mapping follows packaged dictionary atom S1 bonded doubly to C2; S2 is absent. Mapping identity only, no sulfur geometry or recipe target change.",
+      "role": "O2",
+      "sheet": "thymine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O120",
+      "code": "S6G",
+      "reason": "Trim already documented literal whitespace defect at the reviewed S6G atom mapping; preserve exact C5 identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O2",
+      "code": "4E9",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O3",
+      "code": "0AD",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O4",
+      "code": "0DG",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O5",
+      "code": "0G",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O6",
+      "code": "18M",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O7",
+      "code": "1TW",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O8",
+      "code": "23G",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O9",
+      "code": "2EG",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O10",
+      "code": "2JV",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O11",
+      "code": "2LA",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O12",
+      "code": "2MG",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O13",
+      "code": "2SG",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O14",
+      "code": "40G",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O15",
+      "code": "4DG",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O16",
+      "code": "56B",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O17",
+      "code": "5CG",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O18",
+      "code": "68Z",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O19",
+      "code": "6FK",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O20",
+      "code": "6HG",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O22",
+      "code": "6OG",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O23",
+      "code": "6PO",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O24",
+      "code": "7BG",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O25",
+      "code": "7GU",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O26",
+      "code": "7MG",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O27",
+      "code": "7SN",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O28",
+      "code": "8AA",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O29",
+      "code": "8AG",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O30",
+      "code": "8EB",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O31",
+      "code": "8FG",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O32",
+      "code": "8MG",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O33",
+      "code": "8OG",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O35",
+      "code": "8PY",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O36",
+      "code": "8MG",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O37",
+      "code": "8XG",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O38",
+      "code": "A6G",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O39",
+      "code": "AFG",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O40",
+      "code": "B8K",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O41",
+      "code": "B8W",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O42",
+      "code": "B9B",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O43",
+      "code": "BGH",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O44",
+      "code": "BGM",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O45",
+      "code": "BGR",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O47",
+      "code": "C6G",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O48",
+      "code": "CG1",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O49",
+      "code": "DDG",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O50",
+      "code": "DG",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O51",
+      "code": "DG8",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O52",
+      "code": "DGI",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O53",
+      "code": "E6G",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O54",
+      "code": "E7G",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O55",
+      "code": "EHG",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O57",
+      "code": "F4Q",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O58",
+      "code": "F73",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O59",
+      "code": "F74",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O60",
+      "code": "F7K",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O61",
+      "code": "F7U",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O62",
+      "code": "F7X",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O63",
+      "code": "FDG",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O64",
+      "code": "FMG",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O65",
+      "code": "G",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O66",
+      "code": "G2L",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O67",
+      "code": "G2S",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O68",
+      "code": "G31",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O69",
+      "code": "G36",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O70",
+      "code": "G38",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O71",
+      "code": "G46",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O72",
+      "code": "G47",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O73",
+      "code": "G48",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O74",
+      "code": "G49",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O75",
+      "code": "G4P",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O76",
+      "code": "G7M",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O77",
+      "code": "GAO",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O78",
+      "code": "GDO",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O79",
+      "code": "GDP",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O80",
+      "code": "GDR",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O81",
+      "code": "GF2",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O82",
+      "code": "GFL",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O83",
+      "code": "GH3",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O84",
+      "code": "GMS",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O85",
+      "code": "GMX",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O86",
+      "code": "GN7",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O87",
+      "code": "GNP",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O88",
+      "code": "GRB",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O89",
+      "code": "GS",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O90",
+      "code": "GSR",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O91",
+      "code": "GSS",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O92",
+      "code": "GT3",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O93",
+      "code": "GTP",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O94",
+      "code": "GX1",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O95",
+      "code": "HN0",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O97",
+      "code": "K39",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O98",
+      "code": "KAG",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O99",
+      "code": "KAK",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O100",
+      "code": "LCG",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O101",
+      "code": "LGP",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O102",
+      "code": "MFO",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O103",
+      "code": "MGQ",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O104",
+      "code": "MGV",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O105",
+      "code": "MHG",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O106",
+      "code": "MRG",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O107",
+      "code": "OGX",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O108",
+      "code": "OMG",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O109",
+      "code": "P7G",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O110",
+      "code": "P9G",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O111",
+      "code": "PGN",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O112",
+      "code": "PGP",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O113",
+      "code": "PPW",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O114",
+      "code": "PQ1",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O116",
+      "code": "QUO",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O117",
+      "code": "RDG",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O118",
+      "code": "RFJ",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O119",
+      "code": "S4G",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O121",
+      "code": "SDG",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O122",
+      "code": "SJO",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O124",
+      "code": "TG",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O125",
+      "code": "TGP",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O126",
+      "code": "VC7",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O127",
+      "code": "VSN",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O128",
+      "code": "XGL",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O129",
+      "code": "XGR",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O130",
+      "code": "XGU",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O131",
+      "code": "XPB",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O132",
+      "code": "XUG",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O133",
+      "code": "ZGU",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "guanine"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O2",
+      "code": "IGU",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "B"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O3",
+      "code": "XCS",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "B"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O4",
+      "code": "IG",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "B"
+    },
+    {
+      "after": "C5",
+      "before": "C5 ",
+      "cell": "O5",
+      "code": "DB",
+      "reason": "Trim explicitly authorized literal C5 atom-role whitespace; retain exact atom identity.",
+      "role": "C5",
+      "sheet": "B"
+    }
+  ],
+  "changed_parts": [
+    "xl/worksheets/sheet4.xml",
+    "xl/worksheets/sheet7.xml",
+    "xl/worksheets/sheet1.xml",
+    "xl/worksheets/sheet3.xml"
+  ],
+  "deferred": [
+    "PSU glycosidic/base-plane metadata requires coordinated loader and geometry changes.",
+    "No protonation, sulfur geometry, 7MG identity, or 8RO/DE equivalence changes."
+  ],
+  "preservation": "Original XLSX parts with only authored shared-string cell indices transplanted",
+  "review_date": "2026-10-11",
+  "schema_version": 1,
+  "scope": "Reviewed5BU/BRU sugar metadata, DF/S6G atom identity and explicitly authorized all C5 whitespace cleanup",
+  "sheet_count": 14,
+  "source_evidence": [
+    {
+      "code": "5BU",
+      "sha256": "3599af77d7ae2dce4eed308c7d3470497cfca5b2b69e4b83a321142ccd6e9402",
+      "url": "https://files.rcsb.org/ligands/download/5BU.cif"
+    },
+    {
+      "code": "BRU",
+      "sha256": "0f8e6f09421dd289801eab0f254b1767e0140a1c1b0052cd60e671e369ffda43",
+      "url": "https://files.rcsb.org/ligands/download/BRU.cif"
+    },
+    {
+      "code": "PSU",
+      "sha256": "297308d5c29e331d4099cb99e4871e01adf4f8c2ebb68f3e8fcff94d5e557af5",
+      "url": "https://files.rcsb.org/ligands/download/PSU.cif"
+    },
+    {
+      "authority": "Existing reviewed A1AAZ/DF dictionary and current NARestraints handoff, not global code-name equivalence.",
+      "code": "DF",
+      "sha256": "27f83c85e89605b5a0b3b02f062da62d7a348b3b346e5df5774a65c7c143e55e"
+    }
+  ]
+}

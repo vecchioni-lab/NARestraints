@@ -1,9 +1,23 @@
 # NARestraints development handoff
 
-Current checkpoint: **2026-10-10**, based on released **v1.1.3**
+Current checkpoint: **2026-10-11**, based on released **v1.1.3**
 (`a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691`) and the user's subsequent NASolve
 native receipts. This is the active status/backlog; the full September handoff
 and superseded port README are [archived with checksums](history/README.md).
+
+**Unreleased workbook review, 2026-10-11:** the [human audit](workbook-audit-2026-10-11.md)
+and [machine-readable cell manifest](workbook-audit-2026-10-11.json) document
+138 corrections: swapped 5BU/BRU sugar metadata/abbreviations and sorting copies,
+the reviewed DF S1 mapping, and all 129 literal C5 trailing-space mappings.
+The original workbook hash remains the v1.1.3 historical receipt; corrected
+source hash is `afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5`.
+Artifact Tool authored the values; transplantation of only authored cell-string
+indices preserves every other cell value/type/style and unrelated XLSX part.
+Focused regressions: initially 6 failed/2 passed for the first corrections,
+then 1 failed/8 passed for the remaining 128 spaces; final **9 passed**.
+Full command `env PYTHONDONTWRITEBYTECODE=1 ../docs-check-venv/bin/python -m pytest -q`
+passes **42 tests (1.69 s)**. No recipe or loader behavior changes, package
+release, laptop update, or native Phenix execution is claimed.
 
 Read the [README](../README.md) for use and the [v1.1.3 release
 record](release-v1.1.3.md) for release evidence. NASolve's
@@ -49,14 +63,15 @@ exceptions, numerical monomer preparation, polymer linkage, explicit phosphate
 intent and propagation through PostMR/refinement. A component code or a SMILES
 string alone does not select a reviewed pair recipe.
 
-The immediate shared order is **the combined geometry test, then the planned
-SMILES/CIF audit, before the Topo slicer / Scout work**; the detailed roadmap
-stays in NASolve. The audit should compare molecular graphs, including bond
-order, charge, stereochemistry and hydrogen attachment, with provenance for
-normalization. It must distinguish source self-consistency from independent
-chemical validation and keep numerical restraint checks separate. It is a
-planned NASolve preparation/audit capability, not a new NARestraints feature
-or a prerequisite added to the current geometry trial.
+NASolve's first CIF Doctor slice now implements offline dictionary assessment,
+explicit same-code comparison and bounded reviewed preparation, with report-only
+PostMR audits around mutation and ReadySet. The
+[human overview](https://github.com/vecchioni-lab/NASolve/blob/cedar/docs/cif-doctor-human-overview.md)
+explains its algorithm, tools and limits. Native/proxy validation, broader
+chemical descriptors, geometry qualification and guided Topo/Scout work remain
+separate follow-up in the NASolve roadmap. Source self-consistency is distinct
+from independent chemical validation; numerical restraint checks stay separate.
+This adds neither a NARestraints monomer generator nor a geometry-trial gate.
 
 The target preparation workflow remains a fresh full-auto run from ligand codes
 and sequence context, with no student-maintained component patches. Routine
@@ -65,10 +80,15 @@ prepared-bundle diagnostic does not yet satisfy that target.
 
 ## Open NARestraints work
 
-- [ ] **Legacy workbook mappings:** review DF's canonical O2 mapping (`S2` in the
-  legacy workbook versus reviewed A1AAZ/DF atom `S1`) and trim S6G's `C5 ` value.
+- [x] **Legacy workbook mappings:** reviewed DF's canonical O2 mapping (`S2` in the
+  legacy workbook versus reviewed A1AAZ/DF atom `S1`) and trimmed canonical C5 spaces,
+  including S6G. The correction is implemented in unreleased source data.
   Keep downstream compatibility adapters until an upstream data change is
   reviewed, released and tested. Do not mutate an installed workbook at runtime.
+- [ ] **PSU attachment metadata:** replace first-column glycosidic inference
+  with an explicitly reviewed attachment/base-plane contract. Current PSU maps
+  N1 as glycosidic and includes C1′ as a base atom; its CCD attaches C5–C1′.
+  Coordinate loader, geometry, mirror and metadata-filter changes with tests.
 - [ ] **Sulfur geometry:** audit the 3.04 A contact target / 0.2 A sigma against
   appropriate evidence. The historical 2.498 A contact was measured on a prepared
   starting model, not a demonstrated final refined distance. Keep the current
@@ -106,3 +126,6 @@ models, reflections, frozen runs and Free-R assignments.
 
 Promote stable contracts to focused user documentation. Keep this handoff short;
 retain prior evidence in the dated archive instead of appending another transcript.
+Maintain a human feature descriptor explaining purpose, method, tools and
+limitations for readers and manuscript authors. Update it whenever behavior,
+dependencies or scientific claims change; distinguish implemented and planned work.

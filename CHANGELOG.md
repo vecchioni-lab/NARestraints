@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+- Correct swapped 5BU/BRU sugar types and abbreviations, including the sorting
+  view; align reviewed DF O2 mapping with atom S1, and trim all 129 literal
+  `C5 ` role mappings. Document the exact 138 changed cells, source evidence
+  and before/after workbook hashes; preserve unrelated values and workbook parts.
+  Pair targets, numerical dictionaries and protonation are unchanged.
+- Add workbook-backed regressions and document the remaining coupled PSU
+  glycosidic/base-plane issue. This is unreleased source data; installed v1.1.3
+  remains separate until explicitly updated.
+
 - Refresh the active documentation checkpoint against v1.1.3 and the subsequent
   native NASolve combined-run receipts, retaining the boundary between
   preparation/linkage/coverage passes and pending geometry/full-auto validation.
