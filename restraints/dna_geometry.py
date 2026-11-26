@@ -66,6 +66,14 @@ def find_sugar_attachment_atom(residue, record, max_bond_distance=1.8):
         return None
 
     gly_atom = residue[gly_name]
+    attached = record.get("Backbone attachment atom")
+    if attached:
+        if attached == gly_name or attached not in residue:
+            return None
+        atom = residue[attached]
+        separation = distance(atom.coord, gly_atom.coord)
+        return atom if 0 < separation <= max_bond_distance else None
+
     heterocycle_atoms = heterocycle_atom_names(record)
 
     candidates = []
@@ -74,10 +82,9 @@ def find_sugar_attachment_atom(residue, record, max_bond_distance=1.8):
         if atom.get_name() in heterocycle_atoms:
             continue
 
-        distance = np.linalg.norm(atom.coord - gly_atom.coord)
-
-        if distance <= max_bond_distance:
-            candidates.append((distance, atom))
+        separation = distance(atom.coord, gly_atom.coord)
+        if separation <= max_bond_distance:
+            candidates.append((separation, atom))
 
     if not candidates:
         return None

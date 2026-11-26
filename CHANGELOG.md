@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Correct the sugar attachment in PSU, P2U, B8H and UY1. Their sugar C1′ bonds
+  to ring C5. Pairing and stacking use the ring atoms, including N1. The
+  optional workbook columns also let the base-pair guesser identify the exact
+  attachment vector. Older workbooks retain their original behavior.
+
 - Correct swapped 5BU/BRU sugar types and abbreviations, including the sorting
   view; align reviewed DF O2 mapping with atom S1, and trim all 129 literal
   `C5 ` role mappings. Document the exact 138 changed cells, source evidence

@@ -1,0 +1,130 @@
+{
+  "before_sha256": "afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5",
+  "after_sha256": "baa41d80189f16e337cbd294ce91322eb40b68b144222c2d0cf696cb63a4607c",
+  "changed_xlsx_parts": [
+    "xl/sharedStrings.xml",
+    "xl/worksheets/sheet3.xml"
+  ],
+  "sheet": "thymine",
+  "edits": [
+    {
+      "cell": "U1",
+      "before": null,
+      "after": "Glycosidic atom"
+    },
+    {
+      "cell": "V1",
+      "before": null,
+      "after": "Backbone attachment atom"
+    },
+    {
+      "cell": "T58",
+      "before": "C1'",
+      "after": null
+    },
+    {
+      "cell": "U58",
+      "before": null,
+      "after": "C5"
+    },
+    {
+      "cell": "V58",
+      "before": null,
+      "after": "C1'"
+    },
+    {
+      "cell": "T112",
+      "before": "C1'",
+      "after": null
+    },
+    {
+      "cell": "U112",
+      "before": null,
+      "after": "C5"
+    },
+    {
+      "cell": "V112",
+      "before": null,
+      "after": "C1'"
+    },
+    {
+      "cell": "T117",
+      "before": "C1'",
+      "after": null
+    },
+    {
+      "cell": "U117",
+      "before": null,
+      "after": "C5"
+    },
+    {
+      "cell": "V117",
+      "before": null,
+      "after": "C1'"
+    },
+    {
+      "cell": "T196",
+      "before": "C1'",
+      "after": null
+    },
+    {
+      "cell": "U196",
+      "before": null,
+      "after": "C5"
+    },
+    {
+      "cell": "V196",
+      "before": null,
+      "after": "C1'"
+    }
+  ],
+  "source_sheet_order_and_dimensions_preserved": true,
+  "every_other_cell_value_and_type_preserved": true,
+  "widths": {
+    "21": "20",
+    "22": "31"
+  },
+  "date": "2026-11-26",
+  "parent": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+  "other_loaded_records_identical": 614,
+  "record_count": 618,
+  "source_comparison": "Complete named atom/element and bond/order sets compared between wwPDB CCD and Phenix 2.2.1-6174. The packaged workbook, base roles and attachment lookup are the only chemistry definitions changed in this project.",
+  "components": {
+    "PSU": {
+      "wwpdb_url": "https://files.rcsb.org/ligands/download/PSU.cif",
+      "wwpdb_sha256": "297308d5c29e331d4099cb99e4871e01adf4f8c2ebb68f3e8fcff94d5e557af5",
+      "phenix_sha256": "6a5838ebb97813935bb8d54b84251be43f66d93abe2494bef2b4f9670664b8e1",
+      "complete_named_graph_equal": true,
+      "C1prime_to_C5": true,
+      "C1prime_to_N1": false,
+      "ideal_C1prime_C5_A": 1.5072
+    },
+    "P2U": {
+      "wwpdb_url": "https://files.rcsb.org/ligands/download/P2U.cif",
+      "wwpdb_sha256": "8925a0a348b40735e09308a4a44b415dd075d07a5fd2ac9bade3cff099c0c038",
+      "phenix_sha256": "223514f31aa508d334e5d006de0c47aec0f63c22537b955a38f4c498e386086a",
+      "complete_named_graph_equal": true,
+      "C1prime_to_C5": true,
+      "C1prime_to_N1": false,
+      "ideal_C1prime_C5_A": 1.5073
+    },
+    "B8H": {
+      "wwpdb_url": "https://files.rcsb.org/ligands/download/B8H.cif",
+      "wwpdb_sha256": "3aad1868e67da17719a2817ac2352d4243549ce567eb19d1f368da756213b0b7",
+      "phenix_sha256": "110fe5846b553b774dde3fe6ebf958b76ebeb2a81131a2880cdf5d02d93eb388",
+      "complete_named_graph_equal": true,
+      "C1prime_to_C5": true,
+      "C1prime_to_N1": false,
+      "ideal_C1prime_C5_A": 1.5071
+    },
+    "UY1": {
+      "wwpdb_url": "https://files.rcsb.org/ligands/download/UY1.cif",
+      "wwpdb_sha256": "1e02accf10e7ddb2e0c4797825b8b07471b9fb847a96dc00895ab097833d401c",
+      "phenix_sha256": "87132781b826d7553cc64ad30c1da2ce3f2c780d1fe21b12d45e5fd2a9350da0",
+      "complete_named_graph_equal": true,
+      "C1prime_to_C5": true,
+      "C1prime_to_N1": false,
+      "ideal_C1prime_C5_A": 1.5078
+    }
+  }
+}

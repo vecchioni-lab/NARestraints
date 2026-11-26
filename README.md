@@ -84,6 +84,16 @@ still stop generation; the `Other` extension is planned work. The explicit table
 in `restraints/recipe_library.py` is the implementation authority; the bundled
 atom mappings are in `restraints/data/Ligands.xlsx`.
 
+### Explicit sugar attachment in the development workbook
+
+For PSU, P2U, B8H and UY1, the base side of the glycosidic bond is C5 and the
+backbone side is C1′. The optional `Glycosidic atom` and `Backbone attachment atom`
+columns name those atoms. N1 still belongs to the uracil ring. Pair and stack
+planes use the mapped base atoms. The guesser uses the named backbone atom when
+present within its existing distance limit. Workbooks without the new columns
+continue to use their existing mappings. The release remains 1.1.3.
+[Workbook changes and source dictionaries](docs/workbook-audit-2026-11-26.json).
+
 ## What changed in 1.1.3
 
 B:S remains B=G-like/S=C-like; the reversed **Z:P** and **K:X** recipe roles

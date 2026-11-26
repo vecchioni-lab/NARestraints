@@ -1,9 +1,18 @@
 # NARestraints development handoff
 
-Current checkpoint: **2026-10-11**, based on released **v1.1.3**
+Current checkpoint: **2026-11-26**, based on released **v1.1.3**
 (`a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691`) and the user's subsequent NASolve
 native receipts. This is the active status/backlog; the full September handoff
 and superseded port README are [archived with checksums](history/README.md).
+
+**November workbook correction.** PSU, P2U, B8H and UY1 attach through
+C1′–C5. The current wwPDB and Phenix 2.2.1-6174 component graphs agree
+atom-for-atom and bond-for-bond for all four. The corrected workbook retains
+both N1 and C5 in the base and drops C1′ from base-plane and stack selections.
+All 614 other loaded records matched the source parent. The two existing
+A–U hydrogen bonds still resolve for each of the four. The packaged 1.1.3
+release predates these corrections. Use the workbook with its corresponding
+loader. [Exact edits and source fingerprints](workbook-audit-2026-11-26.json).
 
 **Unreleased workbook review, 2026-10-11:** the [human audit](workbook-audit-2026-10-11.md)
 and [machine-readable cell manifest](workbook-audit-2026-10-11.json) document
@@ -85,10 +94,10 @@ prepared-bundle diagnostic does not yet satisfy that target.
   including S6G. The correction is implemented in unreleased source data.
   Keep downstream compatibility adapters until an upstream data change is
   reviewed, released and tested. Do not mutate an installed workbook at runtime.
-- [ ] **PSU attachment metadata:** replace first-column glycosidic inference
-  with an explicitly reviewed attachment/base-plane contract. Current PSU maps
-  N1 as glycosidic and includes C1′ as a base atom; its CCD attaches C5–C1′.
-  Coordinate loader, geometry, mirror and metadata-filter changes with tests.
+- [x] **PSU attachment metadata.** Explicit attachment and base membership
+  now cover the four confirmed rows. The 8YN pseudoisocytidine mapping still
+  needs a separate whole-base review. Its source uses different atom names.
+  Mirroring is a separate coordinate operation and has its own coverage item below.
 - [ ] **Sulfur geometry:** audit the 3.04 A contact target / 0.2 A sigma against
   appropriate evidence. The historical 2.498 A contact was measured on a prepared
   starting model, not a demonstrated final refined distance. Keep the current
