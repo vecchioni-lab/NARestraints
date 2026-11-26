@@ -13,6 +13,18 @@ Generate Phenix nucleic-acid restraint PHIL from a PDB model and a reviewed
 base-pair range file. NARestraints also provides a base-pair guesser and a D/L
 nucleic-acid mirroring tool. It is usable independently of NASolve.
 
+## Install the latest stable release
+
+In the intended Python environment, run
+
+```bash
+python -m pip install --upgrade --no-cache-dir "NARestraints @ https://github.com/vecchioni-lab/NARestraints/releases/latest/download/narestraints.tar.gz"
+```
+
+GitHub serves the tested source archive for its latest release. Its bytes match
+that release's numbered source archive. For a repeatable analysis, record the
+installed version and use its numbered release.
+
 ## Install version 1.1.4
 
 Use a dedicated Python environment (Python 3.10 or later):
