@@ -1,8 +1,8 @@
 # NARestraints
 
-The [reviewed workbook audit](docs/workbook-audit-2026-10-11.md) documents
-unreleased 5BU/BRU metadata, DF/S6G atom-name corrections and the authorized
-canonical-C5 whitespace cleanup. Tagged v1.1.3 retains its original workbook.
+Version 1.1.4 includes reviewed mappings for four C-linked pseudouridines,
+5BU/BRU sugar metadata, DF atom naming and canonical C5 whitespace.
+[Release notes](docs/release-v1.1.4.md).
 
 For maintainers, document substantial features for human readers with purpose,
 inputs/outputs, method, tools, evidence and limitations, including a methods
@@ -13,20 +13,24 @@ Generate Phenix nucleic-acid restraint PHIL from a PDB model and a reviewed
 base-pair range file. NARestraints also provides a base-pair guesser and a D/L
 nucleic-acid mirroring tool. It is usable independently of NASolve.
 
-## Install version 1.1.3
+## Install version 1.1.4
 
 Use a dedicated Python environment (Python 3.10 or later):
 
 ```bash
 python3 -m venv .venv
-.venv/bin/python -m pip install "git+https://github.com/vecchioni-lab/NARestraints.git@v1.1.3"
+.venv/bin/python -m pip install "git+https://github.com/vecchioni-lab/NARestraints.git@v1.1.4"
 ```
 
-The GitHub release also supplies a wheel and source archive. Install the wheel
-with `python -m pip install /path/to/narestraints-1.1.3-py3-none-any.whl`
-inside the intended environment. This is a GitHub release, not a PyPI upload.
-The `restraints` import namespace and bundled `restraints/data/Ligands.xlsx`
-remain unchanged. Phenix and Coot are separate applications, not bundled here.
+To install the tested wheel directly into an existing environment, run
+
+```bash
+python -m pip install "https://github.com/vecchioni-lab/NARestraints/releases/download/v1.1.4/narestraints-1.1.4-py3-none-any.whl"
+```
+
+The wheel includes the `restraints` package and its ligand workbook. GitHub
+also hosts the source archive and SHA-256 checksums. Phenix and Coot are
+separate applications. [Release downloads](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.4).
 
 For development, use `python -m pip install -e '.[test]'` from the checkout.
 When NASolve uses an editable NARestraints checkout, install it with NASolve's
@@ -84,14 +88,14 @@ still stop generation; the `Other` extension is planned work. The explicit table
 in `restraints/recipe_library.py` is the implementation authority; the bundled
 atom mappings are in `restraints/data/Ligands.xlsx`.
 
-### Explicit sugar attachment in the development workbook
+### Explicit sugar attachment in version 1.1.4
 
 For PSU, P2U, B8H and UY1, the base side of the glycosidic bond is C5 and the
 backbone side is C1′. The optional `Glycosidic atom` and `Backbone attachment atom`
 columns name those atoms. N1 still belongs to the uracil ring. Pair and stack
 planes use the mapped base atoms. The guesser uses the named backbone atom when
 present within its existing distance limit. Workbooks without the new columns
-continue to use their existing mappings. The release remains 1.1.3.
+continue to use their existing mappings.
 [Workbook changes and source dictionaries](docs/workbook-audit-2026-11-26.json).
 
 ## What changed in 1.1.3
@@ -126,6 +130,6 @@ and checks all three console tools and the bundled workbook. It is the Linux
 release/CI harness; normal package use is not restricted to Linux.
 
 The release workflow tests Python 3.10, 3.12, and 3.14. A push changing
-`pyproject.toml` on `main` can publish **v1.1.3** only after those tests
+`pyproject.toml` on `main` can publish **v1.1.4** only after those tests
 pass; a manual dispatch on `main` can retry that same gated release. Existing tags and
 releases are not overwritten. See the Actions result for execution status.

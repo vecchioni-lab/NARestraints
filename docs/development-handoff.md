@@ -1,8 +1,8 @@
 # NARestraints development handoff
 
-Current checkpoint: **2026-11-26**, based on released **v1.1.3**
-(`a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691`) and the user's subsequent NASolve
-native receipts. This is the active status/backlog; the full September handoff
+Current checkpoint: **2026-11-26** for the
+[v1.1.4 workbook release](release-v1.1.4.md), following v1.1.3
+(`a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691`) and the NASolve native checks. This is the active status/backlog; the full September handoff
 and superseded port README are [archived with checksums](history/README.md).
 
 **November workbook correction.** PSU, P2U, B8H and UY1 attach through
@@ -14,7 +14,7 @@ A–U hydrogen bonds still resolve for each of the four. The packaged 1.1.3
 release predates these corrections. Use the workbook with its corresponding
 loader. [Exact edits and source fingerprints](workbook-audit-2026-11-26.json).
 
-**Unreleased workbook review, 2026-10-11:** the [human audit](workbook-audit-2026-10-11.md)
+**October workbook review, included in v1.1.4.** the [human audit](workbook-audit-2026-10-11.md)
 and [machine-readable cell manifest](workbook-audit-2026-10-11.json) document
 138 corrections: swapped 5BU/BRU sugar metadata/abbreviations and sorting copies,
 the reviewed DF S1 mapping, and all 129 literal C5 trailing-space mappings.
@@ -28,8 +28,8 @@ Full command `env PYTHONDONTWRITEBYTECODE=1 ../docs-check-venv/bin/python -m pyt
 passes **42 tests (1.69 s)**. No recipe or loader behavior changes, package
 release, laptop update, or native Phenix execution is claimed.
 
-Read the [README](../README.md) for use and the [v1.1.3 release
-record](release-v1.1.3.md) for release evidence. NASolve's
+Read the [README](../README.md) for installation and the [v1.1.4 release
+record](release-v1.1.4.md) for the workbook and package evidence. NASolve's
 [current handoff](https://github.com/vecchioni-lab/NASolve/blob/cedar/docs/development-handoff.md)
 and [native validation ledger](https://github.com/vecchioni-lab/NASolve/blob/cedar/docs/native-modified-pair-live-validation.md)
 own its integration status and next execution steps.
@@ -91,7 +91,7 @@ prepared-bundle diagnostic does not yet satisfy that target.
 
 - [x] **Legacy workbook mappings:** reviewed DF's canonical O2 mapping (`S2` in the
   legacy workbook versus reviewed A1AAZ/DF atom `S1`) and trimmed canonical C5 spaces,
-  including S6G. The correction is implemented in unreleased source data.
+  including S6G. The correction is included in the v1.1.4 workbook.
   Keep downstream compatibility adapters until an upstream data change is
   reviewed, released and tested. Do not mutate an installed workbook at runtime.
 - [x] **PSU attachment metadata.** Explicit attachment and base membership
