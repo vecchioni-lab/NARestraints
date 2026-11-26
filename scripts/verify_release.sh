@@ -27,5 +27,8 @@ for kind in wheel sdist; do
 done
 mkdir -p "$ROOT/dist"
 cp "$WORK/dist/"* "$ROOT/dist/"
-(cd "$ROOT/dist" && sha256sum ./*.whl ./*.tar.gz > SHA256SUMS)
+wheel_name=$(basename "${WHEELS[0]}")
+source_name=$(basename "${SDISTS[0]}")
+cp "$ROOT/dist/$source_name" "$ROOT/dist/narestraints.tar.gz"
+(cd "$ROOT/dist" && sha256sum "$wheel_name" "$source_name" narestraints.tar.gz > SHA256SUMS)
 printf 'Release verification passed: wheel and sdist, installed outside checkout.\n'
