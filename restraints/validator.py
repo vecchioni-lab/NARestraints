@@ -5,14 +5,7 @@ from pathlib import Path
 from Bio.PDB import PDBParser, PDBIO
 
 from .builder import record_for_residue
-from .residue_library import load_residue_records
-
-
-_METADATA_FIELDS = {
-    "Ligand code", "Name", "Abbreviation", "Base Analog", "Phosphate",
-    "Sugar Type", "SugarType", "Saenger", "Notes", "Ref", "Entries",
-    "Function", "Source sheet", "Glycosidic atom",
-}
+from .residue_library import base_atom_items, load_residue_records
 
 
 def _element_from_atom_name(name: str) -> str:
@@ -50,10 +43,9 @@ def find_atom_name_mismatches(pdb_filename: str | Path) -> tuple[list[tuple], li
                     # generation; leave it to the normal builder to report.
                     continue
 
-                for key, value in record.items():
-                    if key in _METADATA_FIELDS or value is None or value == "/" or value == "":
+                for _, value in base_atom_items(record):
+                    if value in ("/", ""):
                         continue
-
                     expected = str(value).strip()
                     if not expected:
                         continue

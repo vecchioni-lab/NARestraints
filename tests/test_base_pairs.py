@@ -38,8 +38,8 @@ def test_read_pair_file(tmp_path: Path):
     assert len(stretches[1].pairs()) == 7
 
 
-def test_mismatched_ranges():
-    path = Path("/tmp/narestraints_bad_pairs.txt")
+def test_mismatched_ranges(tmp_path: Path):
+    path = tmp_path / "bad_pairs.txt"
     path.write_text("A 1:3\nB 10:11\n")
     with pytest.raises(ValueError):
         read_base_pair_file(path)

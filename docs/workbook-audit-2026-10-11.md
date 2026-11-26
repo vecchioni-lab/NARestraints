@@ -79,6 +79,11 @@ snapshots.
 
 ## Deliberately deferred findings
 
+The November 26 workbook correction resolves the PSU attachment issue described
+below and the same confirmed error in P2U, B8H and UY1. The historical October
+findings follow. [Source evidence and cell manifest](workbook-audit-2026-11-26.json).
+
+
 PSU requires a coordinated geometry metadata change. Its CCD graph attaches
 the sugar through C5–C1′. The current loader infers the glycosidic atom from the
 first atom-mapping column, yielding N1 for PSU. The sheet also maps its C7 role

@@ -7,7 +7,7 @@ from Bio.PDB import PDBParser
 
 from .base_pairs import BasePairStretch
 from .phenix import PairResidue, generate_pair_restraints, write_phil
-from .residue_library import find_residue, load_residue_records
+from .residue_library import base_atom_items, find_residue, load_residue_records
 from .stacking import StackingResidue, generate_chain_stacking_restraints
 
 
@@ -17,14 +17,8 @@ _PAIR_CATEGORIES = {"A", "T", "G", "C", "D", "B", "S", "Z", "P", "K", "X", "I"}
 def _record_score(record: dict, residue) -> int:
     """Prefer the residue-library mapping that actually matches the PDB atoms."""
     score = 0
-    for key, value in record.items():
-        if key in {
-            "Ligand code", "Name", "Abbreviation", "Base Analog", "Phosphate",
-            "Sugar Type", "SugarType", "Saenger", "Notes", "Ref", "Entries",
-            "Function", "Source sheet", "Glycosidic atom",
-        }:
-            continue
-        if value is not None and value != "" and residue.has_id(str(value).strip()):
+    for _, value in base_atom_items(record):
+        if value != "" and residue.has_id(str(value).strip()):
             score += 1
     return score
 
@@ -50,14 +44,8 @@ def pair_residue_from_pdb(records: list[dict], residue) -> PairResidue:
         )
 
     atoms = {}
-    for key, value in record.items():
-        if key in {
-            "Ligand code", "Name", "Abbreviation", "Base Analog", "Phosphate",
-            "Sugar Type", "SugarType", "Saenger", "Notes", "Ref", "Entries",
-            "Function", "Source sheet", "Glycosidic atom",
-        }:
-            continue
-        if value is not None and value != "" and residue.has_id(str(value).strip()):
+    for key, value in base_atom_items(record):
+        if value != "" and residue.has_id(str(value).strip()):
             atoms[key] = str(value).strip()
 
     return PairResidue(

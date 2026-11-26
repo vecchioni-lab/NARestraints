@@ -21,6 +21,23 @@ AUTHORITATIVE_SHEETS = [
 ]
 
 
+# These columns describe a residue or its sugar attachment. They never supply
+# a base atom for pairing, stacking or automatic atom-name repair.
+_BASE_METADATA = {
+    "Ligand code", "Name", "Abbreviation", "Base Analog", "Phosphate",
+    "Sugar Type", "SugarType", "Saenger", "Notes", "Ref", "Entries",
+    "Function", "Source sheet", "Glycosidic atom", "Backbone attachment atom",
+}
+
+
+def base_atom_items(record):
+    """Yield workbook roles belonging to the base, including mapped substituents."""
+    backbone = record.get("Backbone attachment atom")
+    for role, atom in record.items():
+        if role not in _BASE_METADATA and atom is not None and atom != backbone:
+            yield role, atom
+
+
 def load_residue_records(workbook_path=None):
     """Return residue records from a workbook or the bundled default.
 
@@ -65,7 +82,10 @@ def _load_residue_records(workbook_path):
                 }
                 record["Ligand code"] = str(record["Ligand code"])
                 record["Source sheet"] = sheet_name
-                record["Glycosidic atom"] = row[headers.index("Function") + 1]
+                if not record.get("Glycosidic atom"):
+                    record["Glycosidic atom"] = row[headers.index("Function") + 1]
+                if not record.get("Backbone attachment atom"):
+                    record.pop("Backbone attachment atom", None)
 
                 records.append(record)
     finally:
@@ -92,24 +112,4 @@ def canonical_atom_name(record, canonical_position):
 
 def heterocycle_atom_names(record):
     """Return actual PDB atom names that belong to the mapped heterocycle."""
-    metadata_fields = {
-        "Ligand code",
-        "Name",
-        "Abbreviation",
-        "Base Analog",
-        "Phosphate",
-        "Sugar Type",
-        "Saenger",
-        "Notes",
-        "Ref",
-        "Entries",
-        "Function",
-        "Source sheet",
-        "Glycosidic atom",
-    }
-
-    return {
-        value
-        for key, value in record.items()
-        if key not in metadata_fields and value is not None
-    }
+    return {atom for _, atom in base_atom_items(record)}

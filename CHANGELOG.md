@@ -2,14 +2,20 @@
 
 ## Unreleased
 
+## 1.1.4 — 2026-11-26
+
+- Correct the sugar attachment in PSU, P2U, B8H and UY1. Their sugar C1′ bonds
+  to ring C5. Pairing and stacking use the ring atoms, including N1. The
+  optional workbook columns also let the base-pair guesser identify the exact
+  attachment vector. Older workbooks retain their original behavior.
+
 - Correct swapped 5BU/BRU sugar types and abbreviations, including the sorting
   view; align reviewed DF O2 mapping with atom S1, and trim all 129 literal
   `C5 ` role mappings. Document the exact 138 changed cells, source evidence
   and before/after workbook hashes; preserve unrelated values and workbook parts.
   Pair targets, numerical dictionaries and protonation are unchanged.
-- Add workbook-backed regressions and document the remaining coupled PSU
-  glycosidic/base-plane issue. This is unreleased source data; installed v1.1.3
-  remains separate until explicitly updated.
+- Add workbook-backed regression coverage, a wheel/source integrity check
+  and the machine-readable records of both workbook audits.
 
 - Refresh the active documentation checkpoint against v1.1.3 and the subsequent
   native NASolve combined-run receipts, retaining the boundary between
