@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+## 1.1.5 — 2026-11-27
+
+- Use O2 opposite adenine N6 when building and scoring a canonical pair with
+  PSU, P2U, B8H or UY1. Their N3–H contact to adenine N1 and the C1′–C5
+  sugar attachment remain the same. All other workbook rows retain their
+  previous atom roles. The optional workbook field applies to the canonical
+  A:T recipe. [Measurements and scope](docs/release-v1.1.5.md).
+
 ## 1.1.4 — 2026-11-26
 
 - Correct the sugar attachment in PSU, P2U, B8H and UY1. Their sugar C1′ bonds

@@ -23,6 +23,7 @@ from .phenix import (
     DT_BONDS,
     PairResidue,
     atom_name,
+    pair_contact_atom_name,
 )
 from .recipe_library import recipe_for
 from .validator import validate_and_fix_pdb
@@ -98,7 +99,7 @@ def _side_for_token(token: str, recipe_name: str) -> str:
 
 
 def _atom_coord(residue, pair_residue: PairResidue, canonical: str, recipe_name: str):
-    name = atom_name(pair_residue, canonical, recipe_name)
+    name = pair_contact_atom_name(pair_residue, canonical, recipe_name)
     return np.asarray(residue[name].coord, dtype=float)
 
 
@@ -117,9 +118,8 @@ def _plane(residue, pair_residue: PairResidue, canonical_names, recipe_name):
 
     for canonical in canonical_names:
         try:
-            points.append(
-                _atom_coord(residue, pair_residue, canonical, recipe_name)
-            )
+            name = atom_name(pair_residue, canonical, recipe_name)
+            points.append(np.asarray(residue[name].coord, dtype=float))
         except (KeyError, ValueError):
             continue
 

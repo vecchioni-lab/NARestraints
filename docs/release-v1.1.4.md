@@ -3,7 +3,8 @@
 This release corrects how NARestraints identifies the bond from the sugar
 to the base in PSU, P2U, B8H and UY1. In all four, C1′ bonds to C5.
 The base ring retains N1, and the intended Watson–Crick contacts to adenine
-use N3 and O4. The updated workbook and loader also keep the sugar out of
+were emitted using N3 and O4. The oxygen assignment was corrected to O2 in
+[v1.1.5](release-v1.1.5.md) after checking experimental pairs. The updated workbook and loader also keep the sugar out of
 the base-pair plane and parallelity selection.
 
 The release includes the October workbook review of 5BU/BRU sugar metadata,

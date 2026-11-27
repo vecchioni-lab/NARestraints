@@ -26,7 +26,7 @@ jobs:
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version: ${{ matrix.python }}
-      - name: Verify the v1.1.4 workbook and its audit
+      - name: Verify the v1.1.5 workbook and its audit
         shell: bash
         run: |
           python - <<'PY'
@@ -34,11 +34,11 @@ jobs:
           import json
           from pathlib import Path
 
-          expected = "baa41d80189f16e337cbd294ce91322eb40b68b144222c2d0cf696cb63a4607c"
-          audit = json.loads(Path("docs/workbook-audit-2026-11-26.json").read_text())
+          expected = "ad4e626dd2fa7d9fe6f05d059b8ff08b31d3f09b13027785b6303cb2df956c83"
+          audit = json.loads(Path("docs/workbook-audit-2026-11-27.json").read_text())
           actual = sha256(Path("restraints/data/Ligands.xlsx").read_bytes()).hexdigest()
           if actual != expected or audit["after_sha256"] != expected:
-              raise SystemExit("Workbook or audit differs from the reviewed v1.1.4 fingerprint")
+              raise SystemExit("Workbook or audit differs from the reviewed v1.1.5 fingerprint")
           PY
       - name: Build and test both installed distributions
         shell: bash
@@ -69,24 +69,24 @@ jobs:
         with:
           name: narestraints-dist
           path: dist
-      - name: Publish tested v1.1.4 artifacts without replacing a release
+      - name: Publish tested v1.1.5 artifacts without replacing a release
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
         shell: bash
         run: |
           set -euo pipefail
-          grep -qx 'version = "1.1.4"' pyproject.toml
+          grep -qx 'version = "1.1.5"' pyproject.toml
           (cd dist && sha256sum -c SHA256SUMS)
-          if gh release view v1.1.4 >/dev/null 2>&1; then
-            echo 'v1.1.4 already exists; refusing to overwrite it.'
+          if gh release view v1.1.5 >/dev/null 2>&1; then
+            echo 'v1.1.5 already exists; refusing to overwrite it.'
             exit 1
           fi
-          if gh api "repos/$GH_REPO/git/ref/tags/v1.1.4" >/dev/null 2>&1; then
-            echo 'v1.1.4 tag already exists; refusing to retarget it.'
+          if gh api "repos/$GH_REPO/git/ref/tags/v1.1.5" >/dev/null 2>&1; then
+            echo 'v1.1.5 tag already exists; refusing to retarget it.'
             exit 1
           fi
-          gh release create v1.1.4 dist/*.whl dist/*.tar.gz dist/SHA256SUMS \
-            --target "$GITHUB_SHA" --title 'NARestraints v1.1.4 — reviewed nucleotide attachment mappings' \
-            --notes-file docs/release-v1.1.4.md --draft
-          gh release edit v1.1.4 --draft=false --latest
+          gh release create v1.1.5 dist/*.whl dist/*.tar.gz dist/SHA256SUMS \
+            --target "$GITHUB_SHA" --title 'NARestraints v1.1.5 — canonical pseudouridine pairing to adenine' \
+            --notes-file docs/release-v1.1.5.md --draft
+          gh release edit v1.1.5 --draft=false --latest
