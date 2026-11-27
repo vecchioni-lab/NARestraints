@@ -96,3 +96,20 @@ def test_all_three_modified_gc_families_have_complementary_synthetic_roles():
         assert generated.count("distance_ideal = 2.8") == 3
         assert "chain A and resid 12 and name N2" in generated
         assert "chain B and resid 4 and name O2" in generated
+
+
+def test_pair_acceptor_is_local_to_contact_roles_of_the_at_recipe():
+    from dataclasses import replace
+    from restraints.phenix import atom_name, pair_contact_atom_name
+
+    names = standard_atoms("T")
+    names.update(O2="OXA", O4="OXB")
+    old = residue("T", 5, "T", names)
+    declared = replace(old, at_acceptor_role="O2")
+    a = residue("A", 7, "A", standard_atoms("A"))
+    assert pair_contact_atom_name(declared, "O4", "AT") == "OXA"
+    assert atom_name(declared, "O4", "AT") == "OXB"
+    for partner in ("D", "G"):
+        p = residue(partner, 4, partner, standard_atoms(partner))
+        assert generate_pair_restraints(declared, p) == generate_pair_restraints(old, p)
+    assert generate_pair_restraints(old, a) != generate_pair_restraints(declared, a)

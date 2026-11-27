@@ -1,9 +1,12 @@
 # NARestraints development handoff
 
-Current checkpoint: **2026-11-26** for the
-[v1.1.4 workbook release](release-v1.1.4.md), following v1.1.3
-(`a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691`) and the NASolve native checks. This is the active status/backlog; the full September handoff
-and superseded port README are [archived with checksums](history/README.md).
+Current checkpoint, 27 November 2026. The [v1.1.5 pair review](release-v1.1.5.md)
+corrects the adenine-facing oxygen for four pseudouridines. In measured duplexes
+O2 faces adenine N6. Version 1.1.4 established their C1′–C5 attachment and
+base-plane membership. A successful atom selection in that release did not
+verify which face meets the paired base. The next NASolve check is to measure
+the same contacts after building a linked, modified scaffold. The September
+handoff and port README are [archived with checksums](history/README.md).
 
 **November workbook correction.** PSU, P2U, B8H and UY1 attach through
 C1′–C5. The current wwPDB and Phenix 2.2.1-6174 component graphs agree
@@ -28,8 +31,8 @@ Full command `env PYTHONDONTWRITEBYTECODE=1 ../docs-check-venv/bin/python -m pyt
 passes **42 tests (1.69 s)**. No recipe or loader behavior changes, package
 release, laptop update, or native Phenix execution is claimed.
 
-Read the [README](../README.md) for installation and the [v1.1.4 release
-record](release-v1.1.4.md) for the workbook and package evidence. NASolve's
+Read the [README](../README.md) for installation and the [v1.1.5 release
+record](release-v1.1.5.md) for the workbook and package evidence. NASolve's
 [current handoff](https://github.com/vecchioni-lab/NASolve/blob/cedar/docs/development-handoff.md)
 and [native validation ledger](https://github.com/vecchioni-lab/NASolve/blob/cedar/docs/native-modified-pair-live-validation.md)
 own its integration status and next execution steps.

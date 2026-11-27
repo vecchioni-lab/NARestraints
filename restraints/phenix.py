@@ -75,6 +75,7 @@ class PairResidue:
     resid: str
     atoms: dict[str, str]
     base_class: str
+    at_acceptor_role: str | None = None
 
 
 # Recipe-role aliases resolve a canonical atom role requested by a recipe to
@@ -105,12 +106,19 @@ def atom_name(residue: PairResidue, canonical: str, recipe_name: str | None = No
     )
 
 
+def pair_contact_atom_name(residue: PairResidue, canonical: str, recipe_name: str | None) -> str:
+    """Resolve the atom used for a pair distance or angle in this recipe."""
+    if recipe_name == "AT" and residue.base_class == "T" and canonical == "O4" and residue.at_acceptor_role:
+        canonical = residue.at_acceptor_role
+    return atom_name(residue, canonical, recipe_name)
+
+
 def atom_selection(
     residue: PairResidue, canonical: str, recipe_name: str | None = None
 ) -> str:
     return (
         f"chain {residue.chain} and resid {residue.resid} "
-        f"and name {atom_name(residue, canonical, recipe_name)}"
+        f"and name {pair_contact_atom_name(residue, canonical, recipe_name)}"
     )
 
 
@@ -218,8 +226,8 @@ def _bond_parameters(
     The other contacts in the same pair keep their ideal distance but use
     sigma 0.4 Å so they can redistribute around the sulfur contact.
     """
-    actual1 = atom_name(residue1, canonical1, recipe_name)
-    actual2 = atom_name(residue2, canonical2, recipe_name)
+    actual1 = pair_contact_atom_name(residue1, canonical1, recipe_name)
+    actual2 = pair_contact_atom_name(residue2, canonical2, recipe_name)
     sulfur_contact = actual1.startswith("S") or actual2.startswith("S")
 
     if sulfur_pair:

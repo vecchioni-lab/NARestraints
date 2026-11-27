@@ -152,7 +152,7 @@ def test_pseudouridine_uses_the_carbon_link_and_base_only_planes(code):
     partner = PairResidue("B", "1", {a: a for a in adenine_roles}, "A")
     pair = generate_pair_restraints(mapped, partner)
     assert pair.count("    bond {") == 2
-    assert "chain A and resid 1 and name O4" in pair and "chain A and resid 1 and name N3" in pair
+    assert "chain A and resid 1 and name O2" in pair and "chain A and resid 1 and name N3" in pair
     assert "name N1" in _selection_for_base_plane(mapped) and "name C5" in _selection_for_base_plane(mapped)
     assert "C1'" not in pair and "C1'" not in _selection_for_base_plane(mapped)
     # An absent or distant named partner cannot be replaced by a nearer hydrogen.

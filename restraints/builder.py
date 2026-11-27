@@ -48,11 +48,19 @@ def pair_residue_from_pdb(records: list[dict], residue) -> PairResidue:
         if value != "" and residue.has_id(str(value).strip()):
             atoms[key] = str(value).strip()
 
+    acceptor = record.get("A:T acceptor role")
+    if acceptor is not None:
+        if (base_class != "T" or not isinstance(acceptor, str)
+                or acceptor.strip() not in dict(base_atom_items(record))):
+            raise ValueError(f"Invalid A:T acceptor role {acceptor!r} for {record['Ligand code']}")
+        acceptor = acceptor.strip()
+
     return PairResidue(
         chain=residue.get_parent().get_id(),
         resid=str(residue.id[1]),
         atoms=atoms,
         base_class=base_class,
+        at_acceptor_role=acceptor,
     )
 
 

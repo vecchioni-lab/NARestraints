@@ -4,4 +4,5 @@ recursive-include docs *.md
 include docs/workbook-audit-*.json
 recursive-include scripts *.py *.sh
 recursive-include tests *.py
+include tests/fixtures/6i1v-canonical-pairs.pdb
 global-exclude .DS_Store *.pyc __pycache__

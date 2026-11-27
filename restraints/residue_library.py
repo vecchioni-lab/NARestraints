@@ -27,6 +27,7 @@ _BASE_METADATA = {
     "Ligand code", "Name", "Abbreviation", "Base Analog", "Phosphate",
     "Sugar Type", "SugarType", "Saenger", "Notes", "Ref", "Entries",
     "Function", "Source sheet", "Glycosidic atom", "Backbone attachment atom",
+    "A:T acceptor role",
 }
 
 
@@ -87,6 +88,8 @@ def _load_residue_records(workbook_path):
                 if not record.get("Backbone attachment atom"):
                     record.pop("Backbone attachment atom", None)
 
+                if not record.get("A:T acceptor role"):
+                    record.pop("A:T acceptor role", None)
                 records.append(record)
     finally:
         workbook.close()

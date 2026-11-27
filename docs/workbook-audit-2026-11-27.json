@@ -1,0 +1,60 @@
+{
+  "before_sha256": "baa41d80189f16e337cbd294ce91322eb40b68b144222c2d0cf696cb63a4607c",
+  "after_sha256": "ad4e626dd2fa7d9fe6f05d059b8ff08b31d3f09b13027785b6303cb2df956c83",
+  "changed_xlsx_parts": [
+    "xl/worksheets/sheet3.xml"
+  ],
+  "sheet": "thymine",
+  "edits": [
+    {
+      "cell": "W1",
+      "before": null,
+      "after": "A:T acceptor role"
+    },
+    {
+      "cell": "W58",
+      "before": null,
+      "after": "O2"
+    },
+    {
+      "cell": "W112",
+      "before": null,
+      "after": "O2"
+    },
+    {
+      "cell": "W117",
+      "before": null,
+      "after": "O2"
+    },
+    {
+      "cell": "W196",
+      "before": null,
+      "after": "O2"
+    }
+  ],
+  "all_other_cells_and_types_preserved": true,
+  "dimensions_and_other_zip_members_preserved": true,
+  "method": "Copied the verified five authored cell values and one column width into the original OOXML container. Header and body use the existing sheet styles.",
+  "roles": {
+    "PSU": "O2",
+    "P2U": "O2",
+    "B8H": "O2",
+    "UY1": "O2"
+  },
+  "scope": "Neutral cis Watson–Crick pairing to adenine",
+  "structural_controls": [
+    "6I1V",
+    "6I1W",
+    "3CGP",
+    "8PFQ",
+    "8PFK"
+  ],
+  "direct_analogue_evidence": [
+    "PSU",
+    "B8H"
+  ],
+  "common_graph_inference": [
+    "P2U",
+    "UY1"
+  ]
+}

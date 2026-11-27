@@ -1,8 +1,7 @@
 # NARestraints
 
-Version 1.1.4 includes reviewed mappings for four C-linked pseudouridines,
-5BU/BRU sugar metadata, DF atom naming and canonical C5 whitespace.
-[Release notes](docs/release-v1.1.4.md).
+Version 1.1.5 uses the measured adenine-facing oxygen in four C-linked
+pseudouridines. [Release notes](docs/release-v1.1.5.md).
 
 For maintainers, document substantial features for human readers with purpose,
 inputs/outputs, method, tools, evidence and limitations, including a methods
@@ -25,24 +24,24 @@ GitHub serves the tested source archive for its latest release. Its bytes match
 that release's numbered source archive. For a repeatable analysis, record the
 installed version and use its numbered release.
 
-## Install version 1.1.4
+## Install version 1.1.5
 
 Use a dedicated Python environment (Python 3.10 or later):
 
 ```bash
 python3 -m venv .venv
-.venv/bin/python -m pip install "git+https://github.com/vecchioni-lab/NARestraints.git@v1.1.4"
+.venv/bin/python -m pip install "git+https://github.com/vecchioni-lab/NARestraints.git@v1.1.5"
 ```
 
 To install the tested wheel directly into an existing environment, run
 
 ```bash
-python -m pip install "https://github.com/vecchioni-lab/NARestraints/releases/download/v1.1.4/narestraints-1.1.4-py3-none-any.whl"
+python -m pip install "https://github.com/vecchioni-lab/NARestraints/releases/download/v1.1.5/narestraints-1.1.5-py3-none-any.whl"
 ```
 
 The wheel includes the `restraints` package and its ligand workbook. GitHub
 also hosts the source archive and SHA-256 checksums. Phenix and Coot are
-separate applications. [Release downloads](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.4).
+separate applications. [Release downloads](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.5).
 
 For development, use `python -m pip install -e '.[test]'` from the checkout.
 When NASolve uses an editable NARestraints checkout, install it with NASolve's
@@ -100,6 +99,16 @@ still stop generation; the `Other` extension is planned work. The explicit table
 in `restraints/recipe_library.py` is the implementation authority; the bundled
 atom mappings are in `restraints/data/Ligands.xlsx`.
 
+### Which oxygen pairs with adenine
+
+In a canonical pseudouridine–adenine pair, pseudouridine N3–H faces adenine
+N1 and O2 faces adenine N6. In ordinary uridine–adenine, the corresponding
+oxygen is O4. The optional `A:T acceptor role` column tells the builder and
+pair guesser which mapped atom to use for the second contact and its angle.
+PSU, P2U, B8H and UY1 declare O2. N1, O2 and O4 keep their chemical names
+and their usual membership in base planes. The evidence for each compound
+is described in the [pairing review](docs/release-v1.1.5.md).
+
 ### Explicit sugar attachment in version 1.1.4
 
 For PSU, P2U, B8H and UY1, the base side of the glycosidic bond is C5 and the
@@ -142,6 +151,6 @@ and checks all three console tools and the bundled workbook. It is the Linux
 release/CI harness; normal package use is not restricted to Linux.
 
 The release workflow tests Python 3.10, 3.12, and 3.14. A push changing
-`pyproject.toml` on `main` can publish **v1.1.4** only after those tests
+`pyproject.toml` on `main` can publish **v1.1.5** only after those tests
 pass; a manual dispatch on `main` can retry that same gated release. Existing tags and
 releases are not overwritten. See the Actions result for execution status.
